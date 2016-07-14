@@ -17,4 +17,8 @@ Add every bugfix in this file, to help others who may run into the same problems
       <li>Gradle sync afterwards</li>
     </ul>
   </li>
+  <li>
+  How to sync projects to Github with Android Studio ->
+  <a href="http://stackoverflow.com/questions/16644946/how-do-you-sync-projects-to-github-with-android-studio" target="_blank">Stackoverflow</a>
+  </li>
 </ul>
