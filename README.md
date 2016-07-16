@@ -24,4 +24,6 @@ Add every bugfix in this file, to help others who may run into the same problems
   <li>
   Get android device unique identifier ->
   <a href="http://stackoverflow.com/questions/2785485/is-there-a-unique-android-device-id/2853253#2853253" target="_blank">Stackoverflow</a>
+  <li>
+  Adding a backend in Android Studio -> <a href="https://github.com/GoogleCloudPlatform/gradle-appengine-templates/tree/master/HelloEndpoints" target="_blank">Github</a>
 </ul>
