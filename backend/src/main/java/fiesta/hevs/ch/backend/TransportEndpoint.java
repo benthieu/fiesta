@@ -149,6 +149,33 @@ public class TransportEndpoint {
         return CollectionResponse.<Transport>builder().setItems(transportList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
     }
 
+
+
+    /**
+     * List all entities by festival.
+     *
+     * @param cursor used for pagination to determine which page to return
+     * @param limit  the maximum number of entries to return
+     * @return a response that encapsulates the result list and the next page token/cursor
+     */
+    @ApiMethod(
+            name = "listByFestival",
+            path = "transportByfestival",
+            httpMethod = ApiMethod.HttpMethod.GET)
+    public CollectionResponse<Transport> listByFestival(@Nullable @Named("festival_id") Long festival_id,@Nullable @Named("cursor") String cursor, @Nullable @Named("limit") Integer limit) {
+        limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
+        Query<Transport> query = ofy().load().type(Transport.class).filter("festival_id", festival_id).limit(limit);
+        if (cursor != null) {
+            query = query.startAt(Cursor.fromWebSafeString(cursor));
+        }
+        QueryResultIterator<Transport> queryIterator = query.iterator();
+        List<Transport> transportList = new ArrayList<Transport>(limit);
+        while (queryIterator.hasNext()) {
+            transportList.add(queryIterator.next());
+        }
+        return CollectionResponse.<Transport>builder().setItems(transportList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
+    }
+
     private void checkExists(Long id) throws NotFoundException {
         try {
             ofy().load().type(Transport.class).id(id).safe();

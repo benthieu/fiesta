@@ -2,6 +2,8 @@ package fiesta.hevs.ch.backend;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
+
 /**
  * Created by mathi on 14.07.2016.
  */
@@ -9,6 +11,7 @@ import com.googlecode.objectify.annotation.Id;
 public class Transport {
     @Id
     private Long id;
+    @Index
     private Long festival_id;
     private String driver;
     private String destination;
