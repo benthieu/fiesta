@@ -2,10 +2,12 @@ package fiesta.hevs.ch.myapplication;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,7 +26,7 @@ public class FestivalActivity extends AppCompatActivity implements FestivalEndpo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_landing);
+        setContentView(R.layout.activity_festival);
 
         mDialog = new ProgressDialog(FestivalActivity.this);
         mDialog.setMessage("Charger les festivals...");
@@ -35,6 +37,20 @@ public class FestivalActivity extends AppCompatActivity implements FestivalEndpo
         dateFormatInput = new SimpleDateFormat("yyyy-MM-dd");
         getFestivals();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mDialog.show();
+        getFestivals();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mDialog.dismiss();
+    }
+
 
     public void getFestivals() {
         new FestivalEndpointsAsyncTask(this).execute();
@@ -69,6 +85,29 @@ public class FestivalActivity extends AppCompatActivity implements FestivalEndpo
         };
 
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                // show order edit/modify of this specific order
+                Intent myIntent = new Intent(FestivalActivity.this, TransportActivity.class);
+                myIntent.putExtra("festival_id", festivals.get(position).getId());
+                myIntent.putExtra("festival_name", festivals.get(position).getName());
+                Date formatDate = null;
+                try {
+                    formatDate = dateFormatInput.parse(festivals.get(position).getDate().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                if (formatDate != null)
+                {
+                    myIntent.putExtra("festival_date", dateFormat.format(formatDate));
+                }
+
+                startActivity(myIntent);
+            }
+        });
 
         final Context context = this;
     }
