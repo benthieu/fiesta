@@ -22,7 +22,11 @@
         <activity
             android:name=".TransportActivity"
             android:theme="@style/Theme.AppCompat"></activity>
-        <activity android:name=".InfoTransportActivity"></activity>
+
+        <activity android:name=".InfoTransportActivity"
+            android:theme="@style/Theme.AppCompat">
+        </activity>
+
     </application>
 
 </manifest>

@@ -7,20 +7,87 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="fiesta.hevs.ch.myapplication.InfoTransportActivity">
+    tools:context="fiesta.hevs.ch.myapplication.InfoTransportActivity"
+    android:background="@layout/drawable_back">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/topView"
+        android:paddingBottom="10dp"
+        android:weightSum="10"
+        android:orientation="horizontal">
 
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:text="&lt;"
+            android:id="@+id/backButton" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_weight="4"
+            android:id="@+id/imageView"
+            android:src="@mipmap/fiesta"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/transport_top_title"
+            android:paddingBottom="10dp"
+            android:layout_weight="4"
+            android:orientation="vertical"
+            android:layout_marginTop="25dp">
+            <TextView
+                android:id="@+id/transport_top_name"
+                android:text="sample"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                />
+            <TextView
+                android:id="@+id/transport_top_date"
+                android:text="sample"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+    </LinearLayout>
     <TextView
         android:id="@+id/driver_name"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:text="NOM DU CHAUFFEUR"/>
+        android:layout_height="40dp"
+        android:layout_below="@+id/topView"
+        android:text="NOM DU CHAUFFEUR"
+        android:textSize="24dp"/>
 
-    <TextView
+    <!--<TextView
         android:id="@+id/infos"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_below="@id/driver_name"
-        android:text="Vous devez confirmer votre course par message. Dites 'Bonjour' à votre conducteur"/>
+        android:text="Vous devez confirmer votre course par message. Dites 'Bonjour' à votre conducteur"/>-->
+
+    <TextView
+        android:id="@+id/infos"
+        android:gravity="left"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:maxLines="4"
+        android:lines="3"
+        android:layout_below="@+id/driver_name"
+        style="@style/ListViewStyle.Light"
+        android:background="@layout/rounded_corners"
+        android:textColor="@color/mainBackground"
+        android:padding="10dp"
+        android:textSize="13dp"
+        android:layout_marginBottom="15dp"
+        android:text="Vous devez confirmer votre course par message. Dites 'Bonjour' à votre conducteur"></TextView>
 
 
     <TextView

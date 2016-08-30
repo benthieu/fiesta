@@ -23,6 +23,8 @@ public class InfoTransportActivity extends AppCompatActivity  {
         final TextView leave = (TextView) findViewById(R.id.driver_leave_value);
         final TextView numPlace = (TextView) findViewById(R.id.nb_place_value);
         final TextView destination = (TextView) findViewById(R.id.destination_value);
+        final TextView festivalName = (TextView) findViewById(R.id.transport_top_name);
+        final TextView festivalDate = (TextView) findViewById(R.id.transport_top_date);
 
         /*driverName.setText(myIntent.getStringExtra("driver_name"));
         leave.setText(myIntent.getStringExtra("time"));
@@ -34,6 +36,8 @@ public class InfoTransportActivity extends AppCompatActivity  {
         leave.setText("10:20");
         numPlace.setText("4");
         destination.setText("Sion");
+        festivalName.setText("Test");
+        festivalDate.setText("08.10.16");
 
     }
 
