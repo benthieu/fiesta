@@ -2,6 +2,8 @@ package fiesta.hevs.ch.backend;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
+
 /**
  * Created by mathi on 14.07.2016.
  */
@@ -9,9 +11,10 @@ import com.googlecode.objectify.annotation.Id;
 public class TransportAlt {
     @Id
     private Long id;
+    @Index
     private Long festival_id;
     private String name;
-    private String descriptioin;
+    private String description;
     private String link;
 
     public Long getId() {
@@ -38,12 +41,12 @@ public class TransportAlt {
         this.name = name;
     }
 
-    public String getDescriptioin() {
-        return descriptioin;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescriptioin(String descriptioin) {
-        this.descriptioin = descriptioin;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getLink() {

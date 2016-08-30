@@ -3,12 +3,19 @@ package fiesta.hevs.ch.myapplication;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import fiesta.hevs.ch.backend.festivalApi.model.Festival;
@@ -35,6 +42,7 @@ public class FestivalActivity extends AppCompatActivity implements FestivalEndpo
 
         dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         dateFormatInput = new SimpleDateFormat("yyyy-MM-dd");
+
         getFestivals();
     }
 
@@ -61,13 +69,28 @@ public class FestivalActivity extends AppCompatActivity implements FestivalEndpo
         mDialog.hide();
 
         final ListView listView = (ListView) findViewById(R.id.listView);
-
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, festivals) {
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_elem_festival, R.id.textview_1, festivals) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
-                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+                TextView text1 = (TextView) view.findViewById(R.id.textview_1);
+                TextView text2 = (TextView) view.findViewById(R.id.textview_2);
+                ImageView image1 = (ImageView) view.findViewById(R.id.imageview);
+
+                if (festivals.get(position).getImage() != null) {
+                    String CurrentString = festivals.get(position).getImage();
+                    String[] separated = CurrentString.split(",");
+                    byte[] decodedString = Base64.decode(separated[1], Base64.DEFAULT);
+                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0,decodedString.length);
+
+                    image1.setImageBitmap(decodedByte);
+                }
+                if (position == 0) {
+                    image1.setBackground(ContextCompat.getDrawable(this.getContext(), R.layout.rounded_corners_top_left));
+                }
+                if (position == (festivals.size()-1)) {
+                    image1.setBackground(ContextCompat.getDrawable(this.getContext(), R.layout.rounded_corners_bottom_left));
+                }
 
                 text1.setText(festivals.get(position).getName());
                 Date formatDate = null;

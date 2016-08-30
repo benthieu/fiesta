@@ -133,11 +133,36 @@ public class TransportAltEndpoint {
      */
     @ApiMethod(
             name = "list",
-            path = "transportAlt",
+            path = "transportAlt_list",
             httpMethod = ApiMethod.HttpMethod.GET)
     public CollectionResponse<TransportAlt> list(@Nullable @Named("cursor") String cursor, @Nullable @Named("limit") Integer limit) {
         limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
         Query<TransportAlt> query = ofy().load().type(TransportAlt.class).limit(limit);
+        if (cursor != null) {
+            query = query.startAt(Cursor.fromWebSafeString(cursor));
+        }
+        QueryResultIterator<TransportAlt> queryIterator = query.iterator();
+        List<TransportAlt> transportAltList = new ArrayList<TransportAlt>(limit);
+        while (queryIterator.hasNext()) {
+            transportAltList.add(queryIterator.next());
+        }
+        return CollectionResponse.<TransportAlt>builder().setItems(transportAltList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
+    }
+
+    /**
+     * List all entities.
+     *
+     * @param cursor used for pagination to determine which page to return
+     * @param limit  the maximum number of entries to return
+     * @return a response that encapsulates the result list and the next page token/cursor
+     */
+    @ApiMethod(
+            name = "listByFestival",
+            path = "transportAlt_listByFestival",
+            httpMethod = ApiMethod.HttpMethod.GET)
+    public CollectionResponse<TransportAlt> listByFestival(@Nullable @Named("festival_id") Long festival_id, @Nullable @Named("cursor") String cursor, @Nullable @Named("limit") Integer limit) {
+        limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
+        Query<TransportAlt> query = ofy().load().type(TransportAlt.class).filter("festival_id", festival_id).limit(limit);
         if (cursor != null) {
             query = query.startAt(Cursor.fromWebSafeString(cursor));
         }

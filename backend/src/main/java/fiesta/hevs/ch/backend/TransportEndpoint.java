@@ -133,7 +133,7 @@ public class TransportEndpoint {
      */
     @ApiMethod(
             name = "list",
-            path = "transport",
+            path = "transport_list",
             httpMethod = ApiMethod.HttpMethod.GET)
     public CollectionResponse<Transport> list(@Nullable @Named("cursor") String cursor, @Nullable @Named("limit") Integer limit) {
         limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
@@ -160,9 +160,9 @@ public class TransportEndpoint {
      */
     @ApiMethod(
             name = "listByFestival",
-            path = "transportByfestival",
+            path = "transport_listByFestival",
             httpMethod = ApiMethod.HttpMethod.GET)
-    public CollectionResponse<Transport> listByFestival(@Nullable @Named("festival_id") Long festival_id,@Nullable @Named("cursor") String cursor, @Nullable @Named("limit") Integer limit) {
+    public CollectionResponse<Transport> listByFestival(@Nullable @Named("festival_id") Long festival_id, @Nullable @Named("cursor") String cursor, @Nullable @Named("limit") Integer limit) {
         limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
         Query<Transport> query = ofy().load().type(Transport.class).filter("festival_id", festival_id).limit(limit);
         if (cursor != null) {

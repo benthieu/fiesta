@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.List;
@@ -18,16 +19,32 @@ import fiesta.hevs.ch.backend.transportApi.model.Transport;
 public class TransportActivity extends AppCompatActivity implements TransportEndpointsInterface {
     private ProgressDialog mDialog;
     private Long festival_id;
+    private Button backButton;
+    private TextView transport_top_name;
+    private TextView transport_top_date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_festival);
+        setContentView(R.layout.activity_transport);
 
         Intent myIntent = getIntent(); // gets the previously created intent
         festival_id = myIntent.getLongExtra("festival_id", 0);
         String festival_name = myIntent.getStringExtra("festival_name");
+        String festival_date = myIntent.getStringExtra("festival_date");
         this.setTitle(festival_name);
 
+        transport_top_name = (TextView) findViewById(R.id.transport_top_name);
+        transport_top_date = (TextView) findViewById(R.id.transport_top_date);
+        transport_top_name.setText(festival_name);
+        transport_top_date.setText(festival_date);
+
+        backButton = (Button) findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         mDialog = new ProgressDialog(TransportActivity.this);
         mDialog.setMessage("Charger les trajets...");
         mDialog.setCancelable(false);

@@ -13,6 +13,7 @@ public class Festival {
     @Id
     private Long id;
     private String name;
+    private String image;
     private Date date;
 
     public Long getId() {
@@ -37,5 +38,13 @@ public class Festival {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

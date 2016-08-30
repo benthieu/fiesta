@@ -7,6 +7,7 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.google.api.client.util.NullValue;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class TransportEndpointsAsyncTask extends AsyncTask<Void, Void, List<Tran
 
     @Override
     protected List<Transport> doInBackground(Void... params) {
-
+        List<Transport> returnList = new ArrayList<Transport>();
         if (transportApi == null) {
             // Only do this once
             TransportApi.Builder builder = new TransportApi.Builder(AndroidHttp.newCompatibleTransport(),
@@ -51,20 +52,23 @@ public class TransportEndpointsAsyncTask extends AsyncTask<Void, Void, List<Tran
         }
 
         try {
-            // and for instance return the list of all employees
-            return transportApi.listByFestival().setFestivalId(festival_id).execute().getItems();
-
+            // and for instance return the list
+            returnList = transportApi.listByFestival().setFestivalId(festival_id).execute().getItems();
         } catch (IOException e) {
             Log.e(TAG, e.toString());
-            return new ArrayList<Transport>();
         }
+        return returnList;
     }
 
     //This method gets executed on the UI thread - The UI can be manipulated directly inside
     //of this method
     @Override
     protected void onPostExecute(List<Transport> result) {
-        listener.updateListView(result);
+        if (result != null) {
+            listener.updateListView(result);
+        }
+        else {
+            listener.updateListView(new ArrayList<Transport>());
+        }
     }
-
 }
