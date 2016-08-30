@@ -10,6 +10,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,13 +79,17 @@ public class FestivalActivity extends AppCompatActivity implements FestivalEndpo
                 ImageView image1 = (ImageView) view.findViewById(R.id.imageview);
 
                 if (festivals.get(position).getImage() != null) {
+                    Log.d("setting_image", festivals.get(position).getName());
                     String CurrentString = festivals.get(position).getImage();
                     String[] separated = CurrentString.split(",");
                     byte[] decodedString = Base64.decode(separated[1], Base64.DEFAULT);
                     Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0,decodedString.length);
-
                     image1.setImageBitmap(decodedByte);
                 }
+                else {
+                    image1.setImageBitmap(null);
+                }
+
                 if (position == 0) {
                     image1.setBackground(ContextCompat.getDrawable(this.getContext(), R.layout.rounded_corners_top_left));
                 }

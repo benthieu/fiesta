@@ -76,15 +76,19 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
 
         final ListView listView = (ListView) findViewById(R.id.listView);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, transports) {
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_elem_transport, R.id.textview_1, transports) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
-                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+                TextView text1 = (TextView) view.findViewById(R.id.textview_1);
+                TextView text2 = (TextView) view.findViewById(R.id.textview_2);
+                TextView text3 = (TextView) view.findViewById(R.id.textview_3);
+                TextView text4 = (TextView) view.findViewById(R.id.textview_4);
 
-                text1.setText(transports.get(position).getDestination());
-                text2.setText(transports.get(position).getDriver());
+                text1.setText(transports.get(position).getDriver());
+                text2.setText("Destination: "+transports.get(position).getDestination());
+                text3.setText(transports.get(position).getNumFreeSpace().toString()+" places");
+                text4.setText("Départ ~"+transports.get(position).getHourStart().toString()+":"+transports.get(position).getMinuteStart().toString());
                 return view;
             }
         };

@@ -81,7 +81,7 @@
     style="@style/ListViewStyle.Light"
     android:background="@layout/rounded_corners"
     android:textColor="@color/mainBackground"
-        android:padding="20dp"
+        android:padding="10dp"
         android:textSize="13dp"
         android:layout_marginBottom="15dp"
     android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."></TextView>
