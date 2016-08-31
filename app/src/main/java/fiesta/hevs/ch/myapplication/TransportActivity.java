@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.List;
@@ -19,7 +20,7 @@ import fiesta.hevs.ch.backend.transportApi.model.Transport;
 public class TransportActivity extends AppCompatActivity implements TransportEndpointsInterface {
     private ProgressDialog mDialog;
     private Long festival_id;
-    private Button backButton;
+    private ImageButton backButton;
     private TextView transport_top_name;
     private TextView transport_top_date;
     @Override
@@ -38,7 +39,7 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
         transport_top_name.setText(festival_name);
         transport_top_date.setText(festival_date);
 
-        backButton = (Button) findViewById(R.id.backButton);
+        backButton = (ImageButton) findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
