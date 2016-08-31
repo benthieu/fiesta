@@ -66,9 +66,11 @@ public class TransportEndpointsAsyncTask extends AsyncTask<Void, Void, List<Tran
     protected void onPostExecute(List<Transport> result) {
         if (result != null) {
             listener.updateListView(result);
+            listener.updateIntro(result);
         }
         else {
             listener.updateListView(new ArrayList<Transport>());
+            listener.updateIntro(new ArrayList<Transport>());
         }
     }
 }

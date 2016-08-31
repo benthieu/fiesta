@@ -23,6 +23,8 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
     private ImageButton backButton;
     private TextView transport_top_name;
     private TextView transport_top_date;
+    private TextView transport_intro;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,7 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
         mDialog.show();
 
         getTransports();
+
     }
 
     @Override
@@ -79,6 +82,7 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
 
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_elem_transport, R.id.textview_1, transports) {
             @Override
+
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
                 TextView text1 = (TextView) view.findViewById(R.id.textview_1);
@@ -105,5 +109,20 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
         });
 
         final Context context = this;
+    }
+
+    @Override
+    public void updateIntro(List<Transport> transports) {
+        Intent myIntent = getIntent(); // gets the previously created intent
+        festival_id = myIntent.getLongExtra("festival_id", 0);
+        String festival_name = myIntent.getStringExtra("festival_name");
+        int nbTransports = transports.size();
+        int nbPlaces = 0;
+        for(int i= 0; i<transports.size(); i++){
+            nbPlaces += transports.get(i).getNumFreeSpace();
+        }
+        transport_intro = (TextView) findViewById(R.id.textview_intro);
+        transport_intro.setText("Actuellement " + nbTransports + " conducteurs sont inscrits et " + nbPlaces + " places disponibles pour rentrer de " + festival_name + ". Prenez contact pour la destination qui vous convient!" );
+
     }
 }

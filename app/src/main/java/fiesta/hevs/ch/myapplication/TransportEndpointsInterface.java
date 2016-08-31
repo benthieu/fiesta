@@ -9,4 +9,5 @@ import fiesta.hevs.ch.backend.transportApi.model.Transport;
  */
 public interface TransportEndpointsInterface {
     void updateListView(List<Transport> transports);
+    void updateIntro(List<Transport> transports);
 }
