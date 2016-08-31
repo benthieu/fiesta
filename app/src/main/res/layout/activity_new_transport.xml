@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@layout/drawable_back"
+    tools:context=".TransportActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/topView"
+        android:paddingBottom="10dp"
+        android:weightSum="10"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:text="&lt;"
+            android:id="@+id/backButton" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_weight="4"
+            android:id="@+id/imageView"
+            android:src="@mipmap/fiesta"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/transport_top_title"
+            android:paddingBottom="10dp"
+            android:layout_weight="4"
+            android:orientation="vertical"
+            android:layout_marginTop="25dp">
+            <TextView
+                android:id="@+id/transport_top_name"
+                android:text="sample"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                />
+            <TextView
+                android:id="@+id/transport_top_date"
+                android:text="sample"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textview_top"
+        android:gravity="left"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/topView"
+        android:text="CREER LE TRAJET"
+        android:paddingBottom="15dp"
+        android:textSize="24dp"
+        ></TextView>
+
+
+    <TextView
+        android:id="@+id/textview_driver_name"
+        android:gravity="left"
+        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_below="@+id/textview_top"
+        android:text="Nom du conducteur"
+        android:paddingBottom="15dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="18dp"
+        ></TextView>
+
+
+    <EditText
+        android:gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText_driver_name"
+        android:layout_below="@+id/textview_top"
+        android:layout_toRightOf="@+id/textview_driver_name"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentEnd="true" />
+
+    <View
+        android:id="@+id/separator1"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/textview_driver_name"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/textview_destination"
+        android:gravity="left"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/separator1"
+        android:text="Destination"
+        android:paddingBottom="15dp"
+        android:textSize="18dp"
+        ></TextView>
+
+    <EditText
+        android:gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/editText_destination"
+        android:layout_below="@+id/separator1"
+        android:layout_toRightOf="@+id/textview_destination"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <View
+        android:id="@+id/separator2"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/textview_destination"
+        android:background="@android:color/darker_gray"/>
+
+
+    <TextView
+        android:id="@+id/textview_places"
+        android:gravity="left"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/separator2"
+        android:text="Nombre de places"
+        android:paddingBottom="15dp"
+        android:textSize="18dp"
+        ></TextView>
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText_places"
+        android:layout_below="@+id/separator2"
+        android:layout_toRightOf="@+id/textview_places"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <View
+        android:id="@+id/separator3"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/textview_places"
+        android:background="@android:color/darker_gray"/>
+
+
+
+    <TextView
+        android:id="@+id/textview_time"
+        android:gravity="left"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/separator3"
+        android:text="Heure du départ (estimée)"
+        android:paddingBottom="15dp"
+        android:textSize="18dp"
+        ></TextView>
+
+    <EditText
+        android:gravity="end"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@+id/textview_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/separator3"
+        android:inputType="time"
+        android:ems="10"
+        android:id="@+id/editText_time"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <View
+        android:id="@+id/separator4"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/textview_time"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/textview_email"
+        android:gravity="left"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/separator4"
+        android:text="email"
+        android:paddingBottom="15dp"
+        android:textSize="18dp"
+        ></TextView>
+
+    <EditText
+        android:gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editText_email"
+        android:layout_below="@+id/separator4"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Créer le trajet"
+        android:id="@+id/save_transport"
+        android:layout_below="@+id/editText_email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp" />
+
+
+</RelativeLayout>
