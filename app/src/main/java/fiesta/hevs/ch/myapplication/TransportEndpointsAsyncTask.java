@@ -7,7 +7,6 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
-import com.google.api.client.util.NullValue;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,9 +23,16 @@ public class TransportEndpointsAsyncTask extends AsyncTask<Void, Void, List<Tran
     private static final String TAG = TransportEndpointsAsyncTask.class.getName();
     private TransportEndpointsInterface listener;
     private Long festival_id;
+    private Transport addTransport =null;
     TransportEndpointsAsyncTask(Long festival_id, TransportEndpointsInterface listener) {
         this.festival_id = festival_id;
         this.listener = listener;
+    }
+
+    //New Constructor to add a new transport.
+    TransportEndpointsAsyncTask(Transport addTransport) {
+
+        this.addTransport = addTransport;
     }
 
     @Override
@@ -52,6 +58,11 @@ public class TransportEndpointsAsyncTask extends AsyncTask<Void, Void, List<Tran
         }
 
         try {
+            if(addTransport !=null){//To register a new transport
+                transportApi.insert(addTransport).execute();
+                return null;
+            }
+
             // and for instance return the list
             returnList = transportApi.listByFestival().setFestivalId(festival_id).execute().getItems();
         } catch (IOException e) {
@@ -69,6 +80,9 @@ public class TransportEndpointsAsyncTask extends AsyncTask<Void, Void, List<Tran
             listener.updateIntro(result);
         }
         else {
+            if(listener==null){ //The listener is null if we create a new transport !
+                return;
+            }
             listener.updateListView(new ArrayList<Transport>());
             listener.updateIntro(new ArrayList<Transport>());
         }

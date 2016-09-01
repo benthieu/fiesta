@@ -8,6 +8,6 @@ import fiesta.hevs.ch.backend.transportAltApi.model.TransportAlt;
 /**
  * Created by Chacha on 01.09.2016.
  */
-public interface TransportAltEndpointsInterface {
+public interface TransportAltEndPointsInterface {
     void updateListView(List<TransportAlt> transportsAlt);
 }

@@ -16,12 +16,11 @@ import android.widget.TextView;
 import java.util.List;
 
 import fiesta.hevs.ch.backend.transportAltApi.model.TransportAlt;
-import fiesta.hevs.ch.backend.transportApi.model.Transport;
 
 /**
  * Created by Chacha on 01.09.2016.
  */
-public class TransportAltActivity extends AppCompatActivity implements TransportAltEndpointsInterface{
+public class TransportAltActivity extends AppCompatActivity implements TransportAltEndPointsInterface {
     private ProgressDialog mDialog;
     private Long festival_id;
     private ImageButton backButton;
@@ -75,7 +74,7 @@ public class TransportAltActivity extends AppCompatActivity implements Transport
     }
 
     public void getTransportsAlt() {
-        new TransportAltEndpointsAsyncTask(festival_id, this).execute();
+        new TransportAltEndPointsAsyncTask(festival_id, this).execute();
     }
 
     @Override

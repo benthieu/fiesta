@@ -14,18 +14,16 @@ import java.util.List;
 
 import fiesta.hevs.ch.backend.transportAltApi.TransportAltApi;
 import fiesta.hevs.ch.backend.transportAltApi.model.TransportAlt;
-import fiesta.hevs.ch.backend.transportApi.TransportApi;
-import fiesta.hevs.ch.backend.transportApi.model.Transport;
 
 /**
  * Created by Chacha on 01.09.2016.
  */
-public class TransportAltEndpointsAsyncTask extends AsyncTask<Void, Void, List<TransportAlt>> {
+public class TransportAltEndPointsAsyncTask extends AsyncTask<Void, Void, List<TransportAlt>> {
     private static TransportAltApi transportAltApi = null;
-    private static final String TAG = TransportAltEndpointsAsyncTask.class.getName();
-    private TransportAltEndpointsInterface listener;
+    private static final String TAG = TransportAltEndPointsAsyncTask.class.getName();
+    private TransportAltEndPointsInterface listener;
     private Long festival_id;
-    TransportAltEndpointsAsyncTask(Long festival_id, TransportAltEndpointsInterface listener) {
+    TransportAltEndPointsAsyncTask(Long festival_id, TransportAltEndPointsInterface listener) {
         this.festival_id = festival_id;
         this.listener = listener;
     }
