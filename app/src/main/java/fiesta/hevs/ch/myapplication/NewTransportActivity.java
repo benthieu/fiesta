@@ -1,28 +1,35 @@
 package fiesta.hevs.ch.myapplication;
 
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TimePicker;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import fiesta.hevs.ch.backend.transportApi.model.Transport;
 
+
+
 /**
  * Created by Pascal on 30.08.2016.
  */
-public class NewTransportActivity extends AppCompatActivity implements View.OnClickListener {
+public class NewTransportActivity extends AppCompatActivity implements View.OnClickListener, TransportTimeInterface {
     private DateFormat dateFormat;
     private DateFormat dateFormatInput;
     private ProgressDialog mDialog;
     private Transport addTransport;
     private long idFestival;
+    private int hour = 0;
+    private int minutes = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +60,7 @@ public class NewTransportActivity extends AppCompatActivity implements View.OnCl
         String destination =  ((EditText) findViewById(R.id.editText_destination)).getText().toString();
         String nbPlace =  ((EditText) findViewById(R.id.editText_places)).getText().toString();
         String email =  ((EditText) findViewById(R.id.editText_email)).getText().toString();
-        String time =  ((EditText) findViewById(R.id.editText_time)).getText().toString();
+        //String time =  ((EditText) findViewById(R.id.editText_time)).getText().toString();
 
         addTransport = new Transport();
 
@@ -61,8 +68,8 @@ public class NewTransportActivity extends AppCompatActivity implements View.OnCl
         addTransport.setDestination(destination);
         addTransport.setNumFreeSpace(3);
         addTransport.setDriverEmail(email);
-        addTransport.setHourStart(01);
-        addTransport.setMinuteStart(30);
+        addTransport.setHourStart(this.hour);
+        addTransport.setMinuteStart(this.minutes);
         addTransport.setFestivalId(this.idFestival);
         insertTransport(addTransport);
         Intent myIntent = new Intent(this, FestivalActivity.class);
@@ -71,6 +78,17 @@ public class NewTransportActivity extends AppCompatActivity implements View.OnCl
 
     public void insertTransport(Transport transport){
         new TransportEndpointsAsyncTask(transport).execute();
+    }
+
+    public void showTimePickerDialog(View v){
+        DialogFragment time = new TimePickerFragment(this);
+        time.show(getSupportFragmentManager(), "Time picker");
+    }
+
+    @Override
+    public void setTime(int hour, int minutes) {
+        this.hour=hour;
+        this.minutes=minutes;
     }
 }
 

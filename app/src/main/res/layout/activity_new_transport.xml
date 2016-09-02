@@ -184,7 +184,18 @@
         android:textSize="18dp"
         ></TextView>
 
-    <EditText
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pick_time"
+        android:layout_below="@+id/separator3"
+        android:gravity="end"
+        android:text="heure"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="showTimePickerDialog"/>
+   <!-- <EditText
         android:gravity="end"
         android:layout_marginBottom="10dp"
         android:layout_toRightOf="@+id/textview_time"
@@ -196,7 +207,7 @@
         android:id="@+id/editText_time"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true" />-->
 
     <View
         android:id="@+id/separator4"
