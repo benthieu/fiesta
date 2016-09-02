@@ -38,8 +38,8 @@ public class TransportAltActivity extends AppCompatActivity implements Transport
         String festival_date = myIntent.getStringExtra("festival_date");
         this.setTitle(festival_name);
 
-        transport_top_name = (TextView) findViewById(R.id.transport_top_name);
-        transport_top_date = (TextView) findViewById(R.id.transport_top_date);
+        TextView transport_top_name = (TextView) findViewById(R.id.transport_top_name);
+        TextView transport_top_date = (TextView) findViewById(R.id.transport_top_date);
         transport_top_name.setText(festival_name);
         transport_top_date.setText(festival_date);
 

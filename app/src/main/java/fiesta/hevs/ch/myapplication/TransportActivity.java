@@ -40,6 +40,8 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
         public void onClick(View v) {
             Intent intentForTransport = new Intent(TransportActivity.this, NewTransportActivity.class);
             intentForTransport.putExtra("festival_id", festival_id);
+            intentForTransport.putExtra("festival_name", festival_name);
+            intentForTransport.putExtra("festival_date", festival_date);
             startActivity(intentForTransport);
         }
     };
@@ -50,6 +52,8 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
         public void onClick(View v) {
             Intent intentForTransport = new Intent(TransportActivity.this, TransportAltActivity.class);
             intentForTransport.putExtra("festival_id", festival_id);
+            intentForTransport.putExtra("festival_name", festival_name);
+            intentForTransport.putExtra("festival_date", festival_date);
             startActivity(intentForTransport);
         }
     };

@@ -33,6 +33,10 @@
         <activity android:name=".TransportAltActivity"
             android:theme="@style/Theme.AppCompat"></activity>
 
+        <activity android:name=".NewTransportActivity"
+            android:theme="@style/Theme.AppCompat"></activity>
+
+
     </application>
 
 </manifest>

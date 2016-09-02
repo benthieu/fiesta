@@ -87,11 +87,26 @@
         android:layout_marginBottom="15dp"
     android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."></TextView>
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:layout_below="@+id/textview_intro" />
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/textview_intro">
+
+        <LinearLayout
+            android:id="@+id/scrollViewContainer"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="vertical" >
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:id="@+id/listView"
+                />
+            <!-- the views contained in your ScrollView goes here -->
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:layout_width="wrap_content"
@@ -99,10 +114,11 @@
         android:layout_weight="2"
         android:padding="10dp"
         android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
         android:layout_centerInParent="true"
         style="@style/ListViewStyle.Light"
         android:id="@+id/otherTransports"
-        android:layout_below="@id/listView"
+        android:layout_below="@id/scrollView"
         android:text="Autres transports"
         android:textColor="@color/mainList"
         android:background="@color/mainListFont"
@@ -114,6 +130,6 @@
         android:id="@+id/createTransport"
         android:layout_below="@id/otherTransports"
         style="@style/ListViewStyle.Light"
-        android:text="Je m'incris comme conducteur"
+        android:text="Je m'inscris comme conducteur"
         android:textColor="@color/mainBackground"/>
 </RelativeLayout>
