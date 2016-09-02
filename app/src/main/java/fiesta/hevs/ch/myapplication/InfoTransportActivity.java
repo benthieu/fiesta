@@ -4,6 +4,8 @@ package fiesta.hevs.ch.myapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import fiesta.hevs.ch.backend.transportApi.model.Transport;
@@ -11,6 +13,7 @@ import fiesta.hevs.ch.backend.transportApi.model.Transport;
 public class InfoTransportActivity extends AppCompatActivity  {
 
     private Long transport_id;
+    private ImageButton backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,18 +29,26 @@ public class InfoTransportActivity extends AppCompatActivity  {
         final TextView festivalName = (TextView) findViewById(R.id.transport_top_name);
         final TextView festivalDate = (TextView) findViewById(R.id.transport_top_date);
 
+        backButton = (ImageButton) findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         /*driverName.setText(myIntent.getStringExtra("driver_name"));
         leave.setText(myIntent.getStringExtra("time"));
         numPlace.setText(myIntent.getIntExtra("num_place",-1));
         destination.setText(myIntent.getStringExtra("destination"));*/
 
         //Temporaire
-        driverName.setText("Contacter ... nom");
-        leave.setText("10:20");
-        numPlace.setText("4");
-        destination.setText("Sion");
-        festivalName.setText("Test");
-        festivalDate.setText("08.10.16");
+        driverName.setText(myIntent.getStringExtra("driver_name"));
+        leave.setText(myIntent.getStringExtra("transport_hourStart") + ":"  + (myIntent.getStringExtra("transport_minuteStart")));
+        numPlace.setText(myIntent.getStringExtra("transport_numFreeSpace"));
+        destination.setText(myIntent.getStringExtra("transport_destination"));
+        festivalName.setText(myIntent.getStringExtra("festival_name"));
+        festivalDate.setText(myIntent.getStringExtra("festival_date"));
 
     }
 

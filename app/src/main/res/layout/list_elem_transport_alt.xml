@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:weightSum="14">
+    android:weightSum="12">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -62,21 +62,5 @@
             android:autoLink="web"
             />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textview_4"
-        android:textColor="@color/mainList"
-        android:layout_marginTop="1dp"
-        android:text="&gt;"
-        android:layout_weight="2"
-        android:layout_gravity="right"
-        android:gravity="right"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textStyle="normal"
-        android:textSize="20dp"
-        android:paddingRight="4dp"
-        android:paddingTop="7dp"
-        />
 
 </LinearLayout>

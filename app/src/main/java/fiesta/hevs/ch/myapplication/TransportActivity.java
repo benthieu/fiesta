@@ -13,6 +13,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import fiesta.hevs.ch.backend.transportApi.model.Transport;
@@ -24,6 +29,10 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
     private TextView transport_top_name;
     private TextView transport_top_date;
     private TextView transport_intro;
+    private String festival_name;
+    private String festival_date;
+    private DateFormat dateFormat;
+    private DateFormat dateFormatInput;
 
     //Listener to create a new transport
     private View.OnClickListener clickCreateTransport = new View.OnClickListener() {
@@ -50,10 +59,13 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transport);
 
+        dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        dateFormatInput = new SimpleDateFormat("yyyy-MM-dd");
+
         Intent myIntent = getIntent(); // gets the previously created intent
         festival_id = myIntent.getLongExtra("festival_id", 0);
-        String festival_name = myIntent.getStringExtra("festival_name");
-        String festival_date = myIntent.getStringExtra("festival_date");
+        festival_name = myIntent.getStringExtra("festival_name");
+        festival_date = myIntent.getStringExtra("festival_date");
         this.setTitle(festival_name);
 
         transport_top_name = (TextView) findViewById(R.id.transport_top_name);
@@ -130,7 +142,28 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+                // show order edit/modify of this specific order
+                Intent myIntent = new Intent(TransportActivity.this, InfoTransportActivity.class);
+                myIntent.putExtra("transport_id", transports.get(position).getId());
+                myIntent.putExtra("driver_name", transports.get(position).getDriver());
+                myIntent.putExtra("transport_hourStart", Integer.toString(transports.get(position).getHourStart()));
+                myIntent.putExtra("transport_minuteStart", Integer.toString(transports.get(position).getMinuteStart()));
+                myIntent.putExtra("transport_numFreeSpace", Integer.toString(transports.get(position).getNumFreeSpace()));
+                myIntent.putExtra("transport_destination", transports.get(position).getDestination());
+                myIntent.putExtra("festival_name", festival_name);
+                myIntent.putExtra("festival_date", festival_date);
+                Date formatDate = null;
+                try {
+                    formatDate = dateFormatInput.parse(festival_date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                if (formatDate != null)
+                {
+                    myIntent.putExtra("festival_date", dateFormat.format(formatDate));
+                }
 
+                startActivity(myIntent);
             }
         });
 
@@ -139,9 +172,6 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
 
     @Override
     public void updateIntro(List<Transport> transports) {
-        Intent myIntent = getIntent(); // gets the previously created intent
-        festival_id = myIntent.getLongExtra("festival_id", 0);
-        String festival_name = myIntent.getStringExtra("festival_name");
         int nbTransports = transports.size();
         int nbPlaces = 0;
         for(int i= 0; i<transports.size(); i++){

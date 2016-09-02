@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.text.DateFormat;
@@ -59,16 +58,15 @@ public class NewTransportActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         String driverName =  ((EditText) findViewById(R.id.editText_driver_name)).getText().toString();
         String destination =  ((EditText) findViewById(R.id.editText_destination)).getText().toString();
-        String nbPlaceString =  ((EditText) findViewById(R.id.editText_places)).getText().toString();
+        String nbPlace =  ((EditText) findViewById(R.id.editText_places)).getText().toString();
         String email =  ((EditText) findViewById(R.id.editText_email)).getText().toString();
-        int nbplace = Integer.parseInt(nbPlaceString);
         //String time =  ((EditText) findViewById(R.id.editText_time)).getText().toString();
 
         addTransport = new Transport();
 
         addTransport.setDriver(driverName);
         addTransport.setDestination(destination);
-        addTransport.setNumFreeSpace(nbplace);
+        addTransport.setNumFreeSpace(3);
         addTransport.setDriverEmail(email);
         addTransport.setHourStart(this.hour);
         addTransport.setMinuteStart(this.minutes);
@@ -91,9 +89,6 @@ public class NewTransportActivity extends AppCompatActivity implements View.OnCl
     public void setTime(int hour, int minutes) {
         this.hour=hour;
         this.minutes=minutes;
-
-        TextView textHour = (TextView)findViewById(R.id.editText_time);
-        textHour.setText(""+hour+":"+minutes);
     }
 }
 
