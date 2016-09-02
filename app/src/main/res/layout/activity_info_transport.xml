@@ -67,12 +67,6 @@
         android:text="NOM DU CHAUFFEUR"
         android:textSize="24dp"/>
 
-    <!--<TextView
-        android:id="@+id/infos"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_below="@id/driver_name"
-        android:text="Vous devez confirmer votre course par message. Dites 'Bonjour' à votre conducteur"/>-->
 
     <TextView
         android:id="@+id/infos"
@@ -103,10 +97,10 @@
         android:id="@+id/driver_leave_value"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-
+        android:layout_marginLeft="60dp"
         android:layout_below="@+id/infos"
-        android:layout_alignLeft="@+id/nb_place_value"
-        android:layout_alignStart="@+id/nb_place_value" /><!-- android:text="DépartVALUE"-->
+        android:layout_toRightOf="@id/driver_leave"
+         android:text="DépartVALUE"/>
 
     <TextView
         android:id="@+id/nb_place"
@@ -118,12 +112,11 @@
         android:id="@+id/nb_place_value"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-
-
+        android:text="Nbr placeVALUE"
         android:layout_below="@+id/driver_leave_value"
-        android:layout_alignLeft="@+id/destination_value"
-        android:layout_alignStart="@+id/destination_value" />
-    <!-- android:text="Nbr placeVALUE"-->
+        android:layout_alignLeft="@+id/driver_leave_value"
+        android:layout_alignStart="@+id/driver_leave_value" />
+
     <TextView
         android:id="@+id/destination"
         android:layout_width="wrap_content"
@@ -132,11 +125,12 @@
         android:text="Destination"/>
     <TextView
         android:id="@+id/destination_value"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="25dp"
+        android:text="DestinationVALUE"
         android:layout_below="@+id/nb_place_value"
-        android:layout_toRightOf="@+id/driver_name"
-        android:layout_toEndOf="@+id/driver_name" />
-    <!-- android:text="Destination"-->
+        android:layout_alignLeft="@+id/nb_place_value"
+        android:layout_alignStart="@+id/nb_place_value" />
+
 
 </RelativeLayout>
