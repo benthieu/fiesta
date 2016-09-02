@@ -26,12 +26,11 @@ public class TransportAltActivity extends AppCompatActivity implements Transport
     private ImageButton backButton;
     private TextView transport_top_name;
     private TextView transport_top_date;
-    private TextView transport_intro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transport);
+        setContentView(R.layout.activity_transport_alt);
 
         Intent myIntent = getIntent(); // gets the previously created intent
         festival_id = myIntent.getLongExtra("festival_id", 0);
@@ -83,7 +82,7 @@ public class TransportAltActivity extends AppCompatActivity implements Transport
 
         final ListView listView = (ListView) findViewById(R.id.listView);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_elem_transport, R.id.textview_1, transportsAlt) {
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_elem_transport_alt, R.id.textview_1, transportsAlt) {
             @Override
 
             public View getView(int position, View convertView, ViewGroup parent) {

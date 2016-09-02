@@ -93,13 +93,27 @@
         android:id="@+id/listView"
         android:layout_below="@+id/textview_intro" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:padding="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_centerInParent="true"
+        style="@style/ListViewStyle.Light"
+        android:id="@+id/otherTransports"
+        android:layout_below="@id/listView"
+        android:text="Autres transports"
+        android:textColor="@color/mainList"
+        android:background="@color/mainListFont"
+        />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/createTransport"
-        android:layout_below="@id/listView"
+        android:layout_below="@id/otherTransports"
         style="@style/ListViewStyle.Light"
-        android:text="Je m'incrit comme conducteur"
+        android:text="Je m'incris comme conducteur"
         android:textColor="@color/mainBackground"/>
 </RelativeLayout>

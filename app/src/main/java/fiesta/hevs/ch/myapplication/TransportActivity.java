@@ -25,7 +25,7 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
     private TextView transport_top_date;
     private TextView transport_intro;
 
-    //Listener for create a new transport
+    //Listener to create a new transport
     private View.OnClickListener clickCreateTransport = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -34,6 +34,17 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
             startActivity(intentForTransport);
         }
     };
+
+    //Listener to view other transports
+    private View.OnClickListener clickOtherTransports = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intentForTransport = new Intent(TransportActivity.this, TransportAltActivity.class);
+            intentForTransport.putExtra("festival_id", festival_id);
+            startActivity(intentForTransport);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +75,10 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
 
         Button createTransport = (Button)findViewById(R.id.createTransport);
         createTransport.setOnClickListener(clickCreateTransport);
+
+        Button otherTransports = (Button)findViewById(R.id.otherTransports);
+        otherTransports.setOnClickListener(clickOtherTransports);
+
         getTransports();
 
     }
