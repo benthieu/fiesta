@@ -185,7 +185,7 @@
         android:textSize="18dp"
         ></TextView>
 
-    <Button
+   <!-- <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pick_time"
@@ -195,20 +195,23 @@
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="showTimePickerDialog"/>
-   <!-- <EditText
+        android:onClick="showTimePickerDialog"/>-->
+    <TextView
         android:gravity="end"
         android:layout_marginBottom="10dp"
         android:layout_toRightOf="@+id/textview_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/separator3"
-        android:inputType="time"
+        android:text="hh:mm"
         android:ems="10"
         android:id="@+id/editText_time"
+        android:textSize="18dp"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />-->
+        android:layout_alignParentEnd="true"
+
+        android:onClick="showTimePickerDialog"/>
 
     <View
         android:id="@+id/separator4"
