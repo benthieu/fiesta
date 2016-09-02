@@ -97,25 +97,25 @@
         android:id="@+id/driver_leave_value"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="100dp"
         android:layout_below="@+id/infos"
         android:layout_toRightOf="@id/driver_leave"
-         android:text="DépartVALUE"/>
+         /> <!-- android:text="DépartVALUE"-->
 
     <TextView
         android:id="@+id/nb_place"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_below="@id/driver_leave"
-        android:text="Nbr place"/>
+        android:text="Nombre de places"/>
     <TextView
         android:id="@+id/nb_place_value"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:text="Nbr placeVALUE"
+
         android:layout_below="@+id/driver_leave_value"
         android:layout_alignLeft="@+id/driver_leave_value"
-        android:layout_alignStart="@+id/driver_leave_value" />
+        android:layout_alignStart="@+id/driver_leave_value" /> <!--android:text="Nbr placeVALUE"-->
 
     <TextView
         android:id="@+id/destination"
@@ -127,10 +127,10 @@
         android:id="@+id/destination_value"
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:text="DestinationVALUE"
+
         android:layout_below="@+id/nb_place_value"
         android:layout_alignLeft="@+id/nb_place_value"
-        android:layout_alignStart="@+id/nb_place_value" />
+        android:layout_alignStart="@+id/nb_place_value" /><!--android:text="DestinationVALUE"-->
 
 
 </RelativeLayout>

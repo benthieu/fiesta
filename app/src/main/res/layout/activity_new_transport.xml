@@ -154,6 +154,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="end"
         android:layout_marginBottom="10dp"
         android:inputType="number"
         android:ems="10"
