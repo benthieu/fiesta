@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +32,15 @@ public class FestivalActivity extends AppCompatActivity implements FestivalEndpo
     private DateFormat dateFormat;
     private DateFormat dateFormatInput;
     private ProgressDialog mDialog;
+
+    //Listener to view other transports
+    private View.OnClickListener clickCommunication = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intentForCommunication = new Intent(FestivalActivity.this, ConversationListActivity.class);
+            startActivity(intentForCommunication);
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,6 +146,10 @@ public class FestivalActivity extends AppCompatActivity implements FestivalEndpo
                 startActivity(myIntent);
             }
         });
+
+        final Button button= (Button) findViewById(R.id.communicationButton);;
+
+        button.setOnClickListener(clickCommunication);
 
         final Context context = this;
     }
