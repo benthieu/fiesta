@@ -76,7 +76,7 @@
         android:id="@+id/textview_driver_name"
         android:gravity="left"
         android:layout_height="wrap_content"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_below="@+id/textview_top"
         android:text="Nom du conducteur"
         android:paddingBottom="15dp"
@@ -98,13 +98,6 @@
         android:layout_marginBottom="10dp"
         android:layout_alignParentEnd="true" />
 
-    <View
-        android:id="@+id/separator1"
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/textview_driver_name"
-        android:background="@android:color/darker_gray"/>
 
     <TextView
         android:id="@+id/textview_destination"
@@ -112,7 +105,7 @@
         android:layout_marginBottom="10dp"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_below="@+id/separator1"
+        android:layout_below="@+id/textview_driver_name"
         android:text="Destination"
         android:paddingBottom="15dp"
         android:textSize="18dp"
@@ -124,18 +117,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:id="@+id/editText_destination"
-        android:layout_below="@+id/separator1"
+        android:layout_below="@+id/textview_driver_name"
         android:layout_toRightOf="@+id/textview_destination"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
-    <View
-        android:id="@+id/separator2"
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/textview_destination"
-        android:background="@android:color/darker_gray"/>
 
 
     <TextView
@@ -144,7 +129,7 @@
         android:layout_marginBottom="10dp"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_below="@+id/separator2"
+        android:layout_below="@+id/textview_destination"
         android:text="Nombre de places"
         android:paddingBottom="15dp"
         android:textSize="18dp"
@@ -159,19 +144,10 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/editText_places"
-        android:layout_below="@+id/separator2"
+        android:layout_below="@+id/textview_destination"
         android:layout_toRightOf="@+id/textview_places"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
-    <View
-        android:id="@+id/separator3"
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/textview_places"
-        android:background="@android:color/darker_gray"/>
-
 
 
     <TextView
@@ -180,30 +156,30 @@
         android:layout_marginBottom="10dp"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_below="@+id/separator3"
+        android:layout_below="@+id/textview_places"
         android:text="Heure du départ (estimée)"
         android:paddingBottom="15dp"
         android:textSize="18dp"
         ></TextView>
 
-   <!-- <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pick_time"
-        android:layout_below="@+id/separator3"
-        android:gravity="end"
-        android:text="heure"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="showTimePickerDialog"/>-->
+    <!-- <Button
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:id="@+id/pick_time"
+         android:layout_below="@+id/separator3"
+         android:gravity="end"
+         android:text="heure"
+         android:layout_centerVertical="true"
+         android:layout_alignParentRight="true"
+         android:layout_alignParentEnd="true"
+         android:onClick="showTimePickerDialog"/>-->
     <TextView
         android:gravity="end"
         android:layout_marginBottom="10dp"
         android:layout_toRightOf="@+id/textview_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/separator3"
+        android:layout_below="@+id/textview_places"
         android:text="hh:mm"
         android:ems="10"
         android:id="@+id/editText_time"
@@ -214,20 +190,13 @@
 
         android:onClick="showTimePickerDialog"/>
 
-    <View
-        android:id="@+id/separator4"
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/textview_time"
-        android:background="@android:color/darker_gray"/>
 
     <TextView
         android:id="@+id/textview_email"
         android:gravity="left"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_below="@+id/separator4"
+        android:layout_below="@+id/textview_time"
         android:text="email"
         android:paddingBottom="15dp"
         android:textSize="18dp"
@@ -239,19 +208,37 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
+        android:layout_toRightOf="@+id/textview_email"
         android:id="@+id/editText_email"
-        android:layout_below="@+id/separator4"
+        android:layout_below="@+id/textview_time"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <CheckBox
+        android:id="@+id/checkbox_conditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_email"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView_conditions"
+        android:text="Je m'engage à rester sobre et reponsable"
+        android:paddingLeft="10dp"
+        android:layout_alignBottom="@+id/checkbox_conditions"
+        android:layout_toRightOf="@+id/checkbox_conditions" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Créer le trajet"
         android:id="@+id/save_transport"
-        android:layout_below="@+id/editText_email"
+        android:layout_below="@+id/checkbox_conditions"
+        android:background="@color/mainListFont"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp" />
+        android:layout_marginTop="15dp"/>
 
 
 </RelativeLayout>
