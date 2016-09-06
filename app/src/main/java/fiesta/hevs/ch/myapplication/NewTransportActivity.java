@@ -9,10 +9,12 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,8 +32,8 @@ public class NewTransportActivity extends AppCompatActivity implements View.OnCl
     private ProgressDialog mDialog;
     private Transport addTransport;
     private long idFestival;
-    private int hour = 0;
-    private int minutes = 0;
+    private int hour = 25;
+    private int minutes = 60;
     private ImageButton backButton;
 
     @Override
@@ -76,21 +78,35 @@ public class NewTransportActivity extends AppCompatActivity implements View.OnCl
         String destination =  ((EditText) findViewById(R.id.editText_destination)).getText().toString();
         String nbPlaceString =  ((EditText) findViewById(R.id.editText_places)).getText().toString();
         String email =  ((EditText) findViewById(R.id.editText_email)).getText().toString();
-        int nbplace = Integer.parseInt(nbPlaceString);
+        //Boolean isSelected = findViewById(R.id.checkbox_conditions).isSelected();
+        CheckBox checkbox = (CheckBox)findViewById(R.id.checkbox_conditions);
+        Boolean isChecked = checkbox.isChecked();
         //String time =  ((EditText) findViewById(R.id.editText_time)).getText().toString();
 
-        addTransport = new Transport();
+        if(driverName.isEmpty() || destination.isEmpty() ||nbPlaceString.isEmpty()|| email.isEmpty() || hour==25 || minutes==60){
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(getApplicationContext(), "Tous les champs doivent être remplis.", duration);
+            toast.show();
 
-        addTransport.setDriver(driverName);
-        addTransport.setDestination(destination);
-        addTransport.setNumFreeSpace(nbplace);
-        addTransport.setDriverEmail(email);
-        addTransport.setHourStart(this.hour);
-        addTransport.setMinuteStart(this.minutes);
-        addTransport.setFestivalId(this.idFestival);
-        insertTransport(addTransport);
-        Intent myIntent = new Intent(this, FestivalActivity.class);
-        startActivity(myIntent);
+        }else if(isChecked==false){
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(getApplicationContext(), "N'oublie pas, tu dois être sobre et responsable ;) ", duration);
+            toast.show();
+        }else{
+            int nbplace = Integer.parseInt(nbPlaceString);
+            addTransport = new Transport();
+
+            addTransport.setDriver(driverName);
+            addTransport.setDestination(destination);
+            addTransport.setNumFreeSpace(nbplace);
+            addTransport.setDriverEmail(email);
+            addTransport.setHourStart(this.hour);
+            addTransport.setMinuteStart(this.minutes);
+            addTransport.setFestivalId(this.idFestival);
+            insertTransport(addTransport);
+            Intent myIntent = new Intent(this, FestivalActivity.class);
+            startActivity(myIntent);
+        }
     }
 
     public void insertTransport(Transport transport){
