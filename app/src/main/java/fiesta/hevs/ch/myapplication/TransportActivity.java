@@ -147,7 +147,8 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 // show order edit/modify of this specific order
-                Intent myIntent = new Intent(TransportActivity.this, InfoTransportActivity.class);
+               // Intent myIntent = new Intent(TransportActivity.this, InfoTransportActivity.class);
+                Intent myIntent = new Intent(TransportActivity.this, UpdateTransportActivity.class);
                 myIntent.putExtra("transport_id", transports.get(position).getId());
                 myIntent.putExtra("driver_name", transports.get(position).getDriver());
                 myIntent.putExtra("transport_hourStart", Integer.toString(transports.get(position).getHourStart()));
@@ -156,6 +157,7 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
                 myIntent.putExtra("transport_destination", transports.get(position).getDestination());
                 myIntent.putExtra("festival_name", festival_name);
                 myIntent.putExtra("festival_date", festival_date);
+                myIntent.putExtra("festval_id", festival_id);
                 Date formatDate = null;
                 try {
                     formatDate = dateFormatInput.parse(festival_date);

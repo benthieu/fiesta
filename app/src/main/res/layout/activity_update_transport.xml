@@ -93,8 +93,6 @@
         android:id="@+id/destination_update"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="Sion"
-
 
         android:layout_alignTop="@+id/destination_textview_update"
         android:layout_toRightOf="@+id/destination_textview_update"
@@ -146,6 +144,19 @@
         android:layout_toRightOf="@id/decrease_places"
         android:layout_marginLeft="20dp"
         android:onClick="clicIncreaseButton"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/update_transport"
+        android:text="Update"
+        android:textColor="@color/mainList"
+        android:background="@color/mainListFont"
+        android:textSize="14dp"
+        android:layout_below="@id/increase_places"
+        android:layout_marginTop="15dp"
+
+        android:onClick="clicSendButton"/>
 
 
 

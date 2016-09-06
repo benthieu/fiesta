@@ -23,16 +23,22 @@ public class TransportEndpointsAsyncTask extends AsyncTask<Void, Void, List<Tran
     private static final String TAG = TransportEndpointsAsyncTask.class.getName();
     private TransportEndpointsInterface listener;
     private Long festival_id;
-    private Transport addTransport =null;
+    private Transport addTransport = null;
+    private boolean updateTransport = false;
     TransportEndpointsAsyncTask(Long festival_id, TransportEndpointsInterface listener) {
         this.festival_id = festival_id;
         this.listener = listener;
     }
 
-    //New Constructor to add a new transport.
+    //New Constructor to add a new transport and update.
     TransportEndpointsAsyncTask(Transport addTransport) {
 
         this.addTransport = addTransport;
+    }
+
+    //When we use this method, to know if it is for a "add" or a "update" transport
+    public void setUpdateTransport(boolean updateTransport){
+        this.updateTransport = updateTransport;
     }
 
     @Override
@@ -59,8 +65,14 @@ public class TransportEndpointsAsyncTask extends AsyncTask<Void, Void, List<Tran
 
         try {
             if(addTransport !=null){//To register a new transport
-                transportApi.insert(addTransport).execute();
-                return null;
+                if(updateTransport!=false){
+                    transportApi.update(addTransport.getId(),addTransport).execute();
+                    return null;
+                }
+                else {
+                    transportApi.insert(addTransport).execute();
+                    return null;
+                }
             }
 
             // and for instance return the list
