@@ -16,14 +16,32 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
-
+/**
+ * This class is used to create the Time Picker
+ * This is a fragment
+ * @author Sylvain
+ * @see NewTransportActivity
+ */
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
 
     private TransportTimeInterface listener;
 
+    /**
+     * Constructor of the fragment
+     * @param listener This is an interface used in NewTransportActivity
+     *                 it is an instance of the class who call this Fragment.
+     * @see TransportTimeInterface
+     * @see NewTransportActivity
+     */
     public TimePickerFragment(TransportTimeInterface listener){
         this.listener = listener;
     }
+
+    /**
+     * Create the dialog withe the time
+     * @param savedInstanceState
+     * @returnn The dialog to be diplayed
+     */
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -36,6 +54,15 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
                 DateFormat.is24HourFormat(getActivity()));
     }
 
+    /**
+     * Method who get the time selected by the user
+     * The time is return "by the interface"
+     * @param view
+     * @param hourOfDay hour selected
+     * @param minute minute selected
+     * @see TransportTimeInterface
+     * @see NewTransportActivity
+     */
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
