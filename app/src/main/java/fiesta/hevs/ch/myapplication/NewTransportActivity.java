@@ -57,6 +57,48 @@ public class NewTransportActivity extends AppCompatActivity implements View.OnCl
         transport_top_date.setText(fromTransport.getStringExtra("festival_date"));
         Button create = (Button)findViewById(R.id.save_transport);
         create.setOnClickListener(this);
+
+
+        // Check whether we're recreating a previously destroyed instance
+        if (savedInstanceState != null) {
+
+            // Restore value from saved state
+            hour = savedInstanceState.getInt("hour");
+            minutes = savedInstanceState.getInt("minutes");
+            boolean isChecked = savedInstanceState.getBoolean("isChecked");
+            CheckBox checkbox = (CheckBox)findViewById(R.id.checkbox_conditions);
+
+            if(isChecked == true){
+                checkbox.setChecked(true);
+            }else{
+                checkbox.setChecked(false);
+            }
+            TextView textHour = (TextView)findViewById(R.id.editText_time);
+            if(hour!=25)
+            textHour.setText(""+hour+":"+minutes);
+        }
+
+    }
+
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        CheckBox checkbox = (CheckBox)findViewById(R.id.checkbox_conditions);
+        boolean isChecked = false;
+
+        if (checkbox.isChecked()){
+            isChecked = true;
+        }else{
+            isChecked = false;
+        }
+
+        // Save the form fields checkbox and time
+        savedInstanceState.putInt("hour", hour);
+        savedInstanceState.putInt("minutes", minutes);
+
+        savedInstanceState.putBoolean("isChecked", isChecked);
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
     }
 
    // @Override
@@ -72,6 +114,7 @@ public class NewTransportActivity extends AppCompatActivity implements View.OnCl
     }*/
 
 
+    //Click to add a new transport
     @Override
     public void onClick(View v) {
         String driverName =  ((EditText) findViewById(R.id.editText_driver_name)).getText().toString();
@@ -83,15 +126,17 @@ public class NewTransportActivity extends AppCompatActivity implements View.OnCl
         Boolean isChecked = checkbox.isChecked();
         //String time =  ((EditText) findViewById(R.id.editText_time)).getText().toString();
 
+        //Test empty text fields
         if(driverName.isEmpty() || destination.isEmpty() ||nbPlaceString.isEmpty()|| email.isEmpty() || hour==25 || minutes==60){
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(getApplicationContext(), "Tous les champs doivent être remplis.", duration);
             toast.show();
-
+        //Test the checkbox is checked
         }else if(isChecked==false){
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(getApplicationContext(), "N'oublie pas, tu dois être sobre et responsable ;) ", duration);
             toast.show();
+        //Add a new transport
         }else{
             int nbplace = Integer.parseInt(nbPlaceString);
             addTransport = new Transport();

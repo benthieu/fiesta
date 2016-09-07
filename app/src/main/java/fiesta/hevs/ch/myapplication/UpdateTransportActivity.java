@@ -55,10 +55,31 @@ public class UpdateTransportActivity extends AppCompatActivity implements Transp
         numPlace = Integer.parseInt(fromTransport.getStringExtra("transport_numFreeSpace"));
         nbPlaces.setText(""+numPlace);
         destination.setText(fromTransport.getStringExtra("transport_destination"));
+
+        // Check whether we're recreating a previously destroyed instance
+        if (savedInstanceState != null) {
+            // Restore value from saved state
+            hour = savedInstanceState.getInt("hour");
+            minutes = savedInstanceState.getInt("minutes");
+            numPlace = savedInstanceState.getInt("numPlace");
+            driverLeave.setText(""+hour+":"+minutes);
+            nbPlaces.setText(""+numPlace);
+        }
         //------------------------------------------------------------------------------------------------------------------------------------
      /*   driverLeave.setText("01:45");
         nbPlaces.setText(""+numPlace);
         destination.setText("Martigny");*/
+    }
+
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        // Save time and numPlace
+        savedInstanceState.putInt("hour", hour);
+        savedInstanceState.putInt("minutes", minutes);
+        savedInstanceState.putInt("numPlace", numPlace);
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     public void clicDecreaseButton(View v){
@@ -101,8 +122,9 @@ public class UpdateTransportActivity extends AppCompatActivity implements Transp
     @Override
     public void setTime(int hour, int minutes) {
         this.hour=hour;
+        this.minutes = minutes;
         TextView driverLeave = (TextView) findViewById(R.id.driver_leave_update);
-         driverLeave.setText(""+hour+":"+minutes);
+        driverLeave.setText(""+hour+":"+minutes);
     }
 
 

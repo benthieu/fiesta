@@ -76,6 +76,7 @@ public class TransportAltActivity extends AppCompatActivity implements Transport
         new TransportAltEndPointsAsyncTask(festival_id, this).execute();
     }
 
+    //Get the list of alternative transports
     @Override
     public void updateListView(final List<TransportAlt> transportsAlt) {
         mDialog.hide();
