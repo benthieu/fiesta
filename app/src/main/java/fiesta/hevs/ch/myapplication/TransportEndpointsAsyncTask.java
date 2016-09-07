@@ -16,7 +16,12 @@ import fiesta.hevs.ch.backend.transportApi.TransportApi;
 import fiesta.hevs.ch.backend.transportApi.model.Transport;
 
 /**
- * Created by mathi on 16.07.2016.
+ * This class do the link between the activity and the backend.
+ * it do the operations in the backgroud
+ * @author  mathi on 16.07.2016.
+ * @see TransportActivity
+ * @see NewTransportActivity
+ * @see UpdateTransportActivity
  */
 public class TransportEndpointsAsyncTask extends AsyncTask<Void, Void, List<Transport>> {
     private static TransportApi transportApi = null;
@@ -25,18 +30,32 @@ public class TransportEndpointsAsyncTask extends AsyncTask<Void, Void, List<Tran
     private Long festival_id;
     private Transport addTransport = null;
     private boolean updateTransport = false;
+
+    /**
+     * Constructor to get a list of transports with the festival id
+     * @param festival_id
+     * @param listener
+     * @see TransportActivity
+     */
     TransportEndpointsAsyncTask(Long festival_id, TransportEndpointsInterface listener) {
         this.festival_id = festival_id;
         this.listener = listener;
     }
 
-    //New Constructor to add a new transport and update.
+    /**
+     * New Constructor to add a new transport or update one.
+     * @param addTransport It is the transport to add or udate
+     */
     TransportEndpointsAsyncTask(Transport addTransport) {
 
         this.addTransport = addTransport;
     }
 
-    //When we use this method, to know if it is for a "add" or a "update" transport
+    /**
+     * When we use this method, to know if it is for a "add" or a "update" transport
+     * @param updateTransport "true" for update and "false" to add
+     * @see UpdateTransportActivity
+     */
     public void setUpdateTransport(boolean updateTransport){
         this.updateTransport = updateTransport;
     }
@@ -83,8 +102,14 @@ public class TransportEndpointsAsyncTask extends AsyncTask<Void, Void, List<Tran
         return returnList;
     }
 
-    //This method gets executed on the UI thread - The UI can be manipulated directly inside
-    //of this method
+    /**
+     * This method gets executed on the UI thread - The UI can be manipulated directly inside
+     * of this method
+     * When we use this class for update or insert a transport, we return nothing
+     * @param result List of transports
+     * @see TransportEndpointsInterface
+     * @see TransportActivity
+     */
     @Override
     protected void onPostExecute(List<Transport> result) {
         if (result != null) {

@@ -1,9 +1,13 @@
 package fiesta.hevs.ch.myapplication;
 
 /**
- * Created by Sylvain on 02.09.2016.
+ * Interface to "communicate" between TimePickerFragment and the affected class
+ * @author  Sylvain on 02.09.2016.
+ * @see TimePickerFragment
+ * @see NewTransportActivity
+ * @see UpdateTransportActivity
  */
 public interface TransportTimeInterface {
 
-    public void setTime(int hour, int minutes);
+    void setTime(int hour, int minutes);
 }

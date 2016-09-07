@@ -10,6 +10,11 @@ import android.widget.TextView;
 
 import fiesta.hevs.ch.backend.transportApi.model.Transport;
 
+/**
+ * This class display some informations for a selected transport.
+ * @see TransportActivity
+ * @author Sylvain
+ */
 public class InfoTransportActivity extends AppCompatActivity  {
 
     private Long transport_id;
@@ -36,11 +41,6 @@ public class InfoTransportActivity extends AppCompatActivity  {
                 finish();
             }
         });
-
-        /*driverName.setText(myIntent.getStringExtra("driver_name"));
-        leave.setText(myIntent.getStringExtra("time"));
-        numPlace.setText(myIntent.getIntExtra("num_place",-1));
-        destination.setText(myIntent.getStringExtra("destination"));*/
 
         //Temporaire
         driverName.setText(myIntent.getStringExtra("driver_name"));
