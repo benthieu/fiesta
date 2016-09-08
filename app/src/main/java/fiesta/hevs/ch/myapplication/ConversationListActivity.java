@@ -55,6 +55,14 @@ public class ConversationListActivity extends AppCompatActivity implements Conve
         mDialog.setCancelable(false);
         mDialog.show();
 
+        backButton = (ImageButton) findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         dateFormatInput = new SimpleDateFormat("yyyy-MM-dd");
 

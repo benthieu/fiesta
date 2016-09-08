@@ -39,6 +39,7 @@ public class CommunicationListActivity extends AppCompatActivity implements Conv
     private Long transport_id;
     private String android_id;
     private String other_device_id;
+    private ImageButton backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,14 @@ public class CommunicationListActivity extends AppCompatActivity implements Conv
         android_id = Settings.Secure.getString(getBaseContext().getContentResolver(), Settings.Secure.ANDROID_ID);
 
         other_device_id = myIntent.getStringExtra("other_device_id");
+
+        backButton = (ImageButton) findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         Button newComButton = (Button) findViewById(R.id.new_communication);
         newComButton.setOnClickListener(new View.OnClickListener() {

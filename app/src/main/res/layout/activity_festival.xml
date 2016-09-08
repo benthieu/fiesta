@@ -42,7 +42,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Communication"
+        android:text="Communications"
         android:id="@+id/communicationButton"
         android:layout_below="@+id/listView"
         android:background="@color/mainListFont"

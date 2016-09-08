@@ -9,12 +9,18 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ConversationListActivity">
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@mipmap/back_button"
+        android:id="@+id/backButton" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/titleView"
         android:text="Nouveau Message"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/backButton"
         android:paddingBottom="15dp"
         android:textSize="24dp"
         android:layout_centerHorizontal="true" />

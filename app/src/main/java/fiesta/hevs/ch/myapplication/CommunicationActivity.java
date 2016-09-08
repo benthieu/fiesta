@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import java.util.List;
 
@@ -22,12 +23,22 @@ public class CommunicationActivity extends AppCompatActivity implements Conversa
     private String device_id_from;
     private String device_id_to;
     private Long festival_transport_id;
+    private ImageButton backButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_communication);
 
         Intent myIntent = getIntent(); // gets the previously created intent
+
+        backButton = (ImageButton) findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         communication_name = (EditText) findViewById(R.id.communication_name);
         communication_message = (EditText) findViewById(R.id.communication_message);
@@ -71,7 +82,6 @@ public class CommunicationActivity extends AppCompatActivity implements Conversa
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mDialog.dismiss();
     }
 
     @Override
