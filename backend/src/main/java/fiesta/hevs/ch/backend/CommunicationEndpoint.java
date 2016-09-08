@@ -146,10 +146,7 @@ public class CommunicationEndpoint {
                                                              @Nullable @Named("device_id_2") String device_id_2,
                                                              @Nullable @Named("cursor") String cursor) {
         int limit = DEFAULT_LIST_LIMIT;
-        Query<Communication> query = ofy().load().type(Communication.class);
-        if (festival_transport_id != null) {
-            query.filter("festival_transport_id", festival_transport_id);
-        }
+        Query<Communication> query = ofy().load().type(Communication.class).order("time_send");
         if (cursor != null) {
             query = query.startAt(Cursor.fromWebSafeString(cursor));
         }
@@ -158,12 +155,29 @@ public class CommunicationEndpoint {
         List<Communication> communicationList = new ArrayList<Communication>(limit);
         while (queryIterator.hasNext()) {
             Communication thiscom = queryIterator.next();
-            if (thiscom.getDevice_id_from() != null && thiscom.getDevice_id_to() != null)  {
-                if ((thiscom.getDevice_id_from().equals(device_id_1) && (thiscom.getDevice_id_to().equals(device_id_2) || device_id_2 == null)) ||
-                        ((thiscom.getDevice_id_from().equals(device_id_2) || device_id_2 == null) && thiscom.getDevice_id_to().equals(device_id_1))) {
-                    communicationList.add(thiscom);
+            boolean return_this = false;
+            if (thiscom.getDevice_id_from() != null && thiscom.getDevice_id_to() != null && thiscom.getFestival_transport_id() != null)  {
+                if (device_id_1 != null) {
+                    if ((thiscom.getDevice_id_from().equals(device_id_1) && (thiscom.getDevice_id_to().equals(device_id_2) || device_id_2 == null)) ||
+                            ((thiscom.getDevice_id_from().equals(device_id_2) || device_id_2 == null) && thiscom.getDevice_id_to().equals(device_id_1))) {
+                        if (festival_transport_id != null) {
+                            if (thiscom.getFestival_transport_id().equals(festival_transport_id)) {
+                                return_this = true;
+                            }
+                        }
+                        else {
+                            return_this = true;
+                        }
+                    }
+                }
+                else {
+                    return_this = true;
                 }
             }
+            if (return_this) {
+                communicationList.add(thiscom);
+            }
+
         }
         return CollectionResponse.<Communication>builder().setItems(communicationList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
     }

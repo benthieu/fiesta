@@ -99,6 +99,10 @@ public class ConversationListActivity extends AppCompatActivity implements Conve
         final Context context = this;
     }
 
+    @Override
+    public void insertedCommunication() {
+    }
+
     /**** Method for Setting the Height of the ListView dynamically.
      **** Hack to fix the issue of not showing all the items of the ListView
      **** when placed inside a ScrollView  ****/

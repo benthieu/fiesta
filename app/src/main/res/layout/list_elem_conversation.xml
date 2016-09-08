@@ -5,7 +5,8 @@
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:weightSum="14">
+    android:id="@+id/layout_message_parent"
+    android:weightSum="10">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -13,12 +14,26 @@
         android:orientation="vertical"
         android:paddingTop="10dp"
         android:paddingLeft="10dp"
-        android:layout_weight="4"
-        android:paddingBottom="10dp">
+        android:layout_weight="7"
+        style="@style/ListViewStyle.Light"
+        android:background="@layout/rounded_corners"
+        android:id="@+id/layout_message"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
         <TextView
-            android:id="@+id/textview_1"
-            android:textColor="@color/mainList"
+            android:id="@+id/textview_name"
             android:text="sample"
+            android:textColor="@color/mainListFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/textview_message"
+            android:text="sample"
+            android:textColor="@color/mainListFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12dp"

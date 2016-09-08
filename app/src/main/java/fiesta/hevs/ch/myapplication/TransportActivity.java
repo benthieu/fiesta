@@ -189,6 +189,7 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
                 myIntent.putExtra("transport_hourStart", Integer.toString(transports.get(position).getHourStart()));
                 myIntent.putExtra("transport_minuteStart", Integer.toString(transports.get(position).getMinuteStart()));
                 myIntent.putExtra("transport_numFreeSpace", Integer.toString(transports.get(position).getNumFreeSpace()));
+                myIntent.putExtra("transport_device_id", transports.get(position).getDeviceId());
                 myIntent.putExtra("transport_destination", transports.get(position).getDestination());
                 myIntent.putExtra("festival_name", festival_name);
                 myIntent.putExtra("festival_date", festival_date);

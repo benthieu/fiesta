@@ -137,8 +137,26 @@
 
         android:layout_below="@+id/nb_place_value"
         android:layout_alignLeft="@+id/nb_place_value"
-        android:layout_alignStart="@+id/nb_place_value" /><!--android:text="DestinationVALUE"-->
+        android:layout_alignStart="@+id/nb_place_value" />
 
-
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/conversation_list"
+        android:layout_below="@+id/destination_value"
+        android:layout_marginTop="20dp" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_communication"
+        android:layout_below="@id/conversation_list"
+        style="@style/ListViewStyle.Light"
+        android:text="Nouveau Message"
+        android:textColor="@color/mainBackground"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
 </ScrollView>
