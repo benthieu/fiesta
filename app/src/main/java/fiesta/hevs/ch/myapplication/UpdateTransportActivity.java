@@ -12,6 +12,11 @@ import android.widget.TextView;
 
 import fiesta.hevs.ch.backend.transportApi.model.Transport;
 
+/**
+ * This class is used by the driver for update his transport (num place and hour)
+ *(it is also used to communicate withe the future passengers)
+ * @author Sylvain
+ */
 public class UpdateTransportActivity extends AppCompatActivity implements TransportTimeInterface {
 
     private Transport transport = new Transport();
@@ -20,6 +25,12 @@ public class UpdateTransportActivity extends AppCompatActivity implements Transp
     private int minutes;
     private ImageButton backButton;
 
+    /**
+     * In this method we got some informations on the transport to update, from TransportActivity
+     * And these informations are used to be displayed on the layout.
+     * We check also the state of this Activity
+     * @see TransportActivity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +82,9 @@ public class UpdateTransportActivity extends AppCompatActivity implements Transp
         destination.setText("Martigny");*/
     }
 
+    /**
+     * Method to save the new information(s) if the state of this Activity change
+     */
     public void onSaveInstanceState(Bundle savedInstanceState) {
 
         // Save time and numPlace
@@ -82,6 +96,10 @@ public class UpdateTransportActivity extends AppCompatActivity implements Transp
         super.onSaveInstanceState(savedInstanceState);
     }
 
+    /**
+    * Method used by the "-" button to decrease the number of places.
+    * There is a test to not be under 0 place.
+     */
     public void clicDecreaseButton(View v){
 
         if(numPlace>0){
@@ -91,6 +109,9 @@ public class UpdateTransportActivity extends AppCompatActivity implements Transp
         }
     }
 
+    /**
+     Method used by the "+" button to increase the number of places.
+     */
     public void clicIncreaseButton(View v){
 
         numPlace+=1;
@@ -99,6 +120,11 @@ public class UpdateTransportActivity extends AppCompatActivity implements Transp
 
     }
 
+    /**
+     * Method to get all informations who can be changed and put them
+    *  in the new object transport. And return on the festivalActivity
+    *
+     */
     public void clicSendButton(View v){
         //Get num free place
         transport.setNumFreeSpace(this.numPlace);
@@ -109,16 +135,30 @@ public class UpdateTransportActivity extends AppCompatActivity implements Transp
         Intent endUpdate = new Intent(this, FestivalActivity.class);
         startActivity(endUpdate);
     }
+    /**
+     Method to send the new transport updated to the database on the cloud
+     @see TransportEndpointsAsyncTask
+     */
     public void updateTransport(){
         TransportEndpointsAsyncTask teas = new TransportEndpointsAsyncTask(this.transport);
         teas.setUpdateTransport(true);
         teas.execute();
     }
+    /**
+     * Method to display the time picker
+     * @param v
+     */
     public void showTimePickerDialog(View v){
         DialogFragment time = new TimePickerFragment(this);
         time.show(getSupportFragmentManager(), "Time picker");
 
     }
+    /**
+     * Method to get the time selected by the user, on the time picker
+     * We use this hour to set on the updated transport and display on the activity
+     * @param hour hour selected
+     * @param minutes minutes selected
+     */
     @Override
     public void setTime(int hour, int minutes) {
         this.hour=hour;
