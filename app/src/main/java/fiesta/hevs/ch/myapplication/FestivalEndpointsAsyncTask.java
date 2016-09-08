@@ -16,17 +16,30 @@ import fiesta.hevs.ch.backend.festivalApi.model.Festival;
 import fiesta.hevs.ch.backend.festivalApi.FestivalApi;
 
 /**
- * Created by mathi on 15.07.2016.
+ * This class do the link between the activity (Festival) and the backend.
+ * it do the operations in the backgroud
+ * @author  mathi on 15.07.2016.
+ * @see FestivalActivity
  */
 public class FestivalEndpointsAsyncTask extends AsyncTask<Void, Void, List<Festival>> {
     private static FestivalApi festivalApi = null;
     private static final String TAG = FestivalEndpointsAsyncTask.class.getName();
     private FestivalEndpointsInterface listener;
 
+    /**
+     * Constructor to get a list of Festivals
+     * @param listener
+     * @see FestivalEndpointsInterface
+     * @see FestivalActivity
+     */
     FestivalEndpointsAsyncTask(FestivalEndpointsInterface listener) {
         this.listener = listener;
     }
 
+    /**
+     * This method do the link with the backend to access at the database
+     * And return a list of festivals
+     */
     @Override
     protected List<Festival> doInBackground(Void... params) {
 
@@ -59,8 +72,13 @@ public class FestivalEndpointsAsyncTask extends AsyncTask<Void, Void, List<Festi
         }
     }
 
-    //This method gets executed on the UI thread - The UI can be manipulated directly inside
-    //of this method
+    /**
+     * This method gets executed on the UI thread - The UI can be manipulated directly inside
+     * of this method
+     * We use the Interface to get the list of festivals to the activity
+     * @see FestivalEndpointsInterface
+     * @see FestivalActivity
+     */
     @Override
     protected void onPostExecute(List<Festival> result) {
         if (result != null) {

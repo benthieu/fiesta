@@ -1,7 +1,12 @@
 package fiesta.hevs.ch.backend;
 
+import com.google.appengine.repackaged.com.google.api.client.util.DateTime;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
+
+import java.util.Date;
+
 /**
  * Created by mathi on 14.07.2016.
  */
@@ -9,11 +14,33 @@ import com.googlecode.objectify.annotation.Id;
 public class Communication {
     @Id
     private Long id;
+    @Index
     private Long festival_transport_id;
     private String name;
     private String message;
+    @Index
     private String device_id_to;
+    @Index
     private String device_id_from;
+    private Date time_send;
+    private boolean is_read;
+
+    public boolean is_read() {
+        return is_read;
+    }
+
+    public void setIs_read(boolean is_read) {
+        this.is_read = is_read;
+    }
+
+    public Date getTime_send() {
+        return time_send;
+    }
+
+    public void setTime_send(Date time_send) {
+        this.time_send = time_send;
+    }
+
 
     public Long getId() {
         return id;

@@ -3,8 +3,10 @@ package fiesta.hevs.ch.myapplication;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -151,7 +153,17 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
                                     int position, long id) {
                 // show order edit/modify of this specific order
                // Intent myIntent = new Intent(TransportActivity.this, InfoTransportActivity.class);
-                Intent myIntent = new Intent(TransportActivity.this, UpdateTransportActivity.class);
+
+                Intent myIntent;
+
+                String android_id = Settings.Secure.getString(getBaseContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+                Log.d("device", android_id);
+                if (!android_id.equals(transports.get(position).getDeviceId())) {
+                    myIntent = new Intent(TransportActivity.this, InfoTransportActivity.class);
+                }
+                else {
+                    myIntent = new Intent(TransportActivity.this, UpdateTransportActivity.class);
+                }
                 myIntent.putExtra("transport_id", transports.get(position).getId());
                 myIntent.putExtra("driver_name", transports.get(position).getDriver());
                 myIntent.putExtra("transport_hourStart", Integer.toString(transports.get(position).getHourStart()));
@@ -187,7 +199,9 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
             nbPlaces += transports.get(i).getNumFreeSpace();
         }
         transport_intro = (TextView) findViewById(R.id.textview_intro);
-        transport_intro.setText("Actuellement " + nbTransports + " conducteurs sont inscrits et " + nbPlaces + " places disponibles pour rentrer de " + festival_name + ". Prenez contact pour la destination qui vous convient!" );
+        transport_intro.setText("Actuellement " + nbTransports + " conducteurs sont inscrits et " +
+                nbPlaces + " places disponibles pour rentrer de " + festival_name +
+                ". Prenez contact pour la destination qui vous convient!" );
 
     }
 

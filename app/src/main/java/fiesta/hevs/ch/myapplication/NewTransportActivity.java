@@ -1,10 +1,9 @@
 package fiesta.hevs.ch.myapplication;
 
 import android.app.ProgressDialog;
-import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,11 +12,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 import fiesta.hevs.ch.backend.transportApi.model.Transport;
 
@@ -155,6 +152,8 @@ public class NewTransportActivity extends AppCompatActivity implements View.OnCl
     }
 
     public void insertTransport(Transport transport){
+        String android_id = Settings.Secure.getString(getBaseContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        transport.setDeviceId(android_id);
         new TransportEndpointsAsyncTask(transport).execute();
     }
 
