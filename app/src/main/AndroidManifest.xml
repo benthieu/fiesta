@@ -24,7 +24,7 @@
             android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".InfoTransportActivity"
-            android:theme="@style/Theme.AppCompat"></activity>
+            android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".ConversationListActivity"
             android:theme="@style/Theme.AppCompat" />
@@ -34,8 +34,11 @@
         <activity
             android:name=".NewTransportActivity"
             android:theme="@style/Theme.AppCompat" />
-        <activity android:name=".UpdateTransportActivity"
-            android:theme="@style/Theme.AppCompat"/>
+        <activity
+            android:name=".UpdateTransportActivity"
+            android:theme="@style/Theme.AppCompat" />
+        <activity android:name=".CommunicationActivity"
+            android:theme="@style/Theme.AppCompat"></activity>
     </application>
 
 </manifest>

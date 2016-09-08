@@ -95,4 +95,8 @@ public class ConversationListActivity extends AppCompatActivity implements Conve
 
         final Context context = this;
     }
+
+    @Override
+    public void insertedCommunication() {
+    }
 }

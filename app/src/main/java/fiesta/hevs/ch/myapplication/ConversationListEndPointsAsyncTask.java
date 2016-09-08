@@ -20,6 +20,54 @@ import fiesta.hevs.ch.backend.communicationApi.model.Communication;
  */
 public class ConversationListEndPointsAsyncTask extends AsyncTask<Void, Void, List<Communication>> {
     private static CommunicationApi communicationApi = null;
+
+    private int type;
+    private Long festival_transport_id;
+    private String device_id_1;
+    private String device_id_2;
+    private Communication tempCommunication;
+
+
+    public Communication getTempCommunication() {
+        return tempCommunication;
+    }
+
+    public void setTempCommunication(Communication tempCommunication) {
+        this.tempCommunication = tempCommunication;
+    }
+
+    public String getDevice_id_2() {
+        return device_id_2;
+    }
+
+    public void setDevice_id_2(String device_id_2) {
+        this.device_id_2 = device_id_2;
+    }
+
+    public Long getFestival_transport_id() {
+        return festival_transport_id;
+    }
+
+    public void setFestival_transport_id(Long festival_transport_id) {
+        this.festival_transport_id = festival_transport_id;
+    }
+
+    public String getDevice_id_1() {
+        return device_id_1;
+    }
+
+    public void setDevice_id_1(String device_id_1) {
+        this.device_id_1 = device_id_1;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
     private static final String TAG = ConversationListEndPointsAsyncTask.class.getName();
     private ConversationListEndPointsInterface listener;
 
@@ -49,23 +97,41 @@ public class ConversationListEndPointsAsyncTask extends AsyncTask<Void, Void, Li
                     });
             communicationApi = builder.build();
         }
+        if (type == listener.LIST) {
+            try {
+                // and for instance return the list of all employees
+                return returnList = communicationApi.listByTransport().setFestivalTransportId(festival_transport_id).setDeviceId1(device_id_1).execute().getItems();
 
-        try {
-            // and for instance return the list of all employees
-            return returnList=communicationApi.list().execute().getItems();
-
-        } catch (IOException e) {
-            Log.e(TAG, e.toString());
-            return new ArrayList<Communication>();
+            } catch (IOException e) {
+                Log.e(TAG, e.toString());
+                return new ArrayList<Communication>();
+            }
         }
+        if (type == listener.INSERT) {
+            if (tempCommunication != null) {
+                try {
+                    communicationApi.insert(tempCommunication).execute();
+                } catch (IOException e) {
+                    Log.e(TAG, e.toString());
+                }
+            }
+        }
+        return null;
     }
 
     //This method gets executed on the UI thread - The UI can be manipulated directly inside
     //of this method
     @Override
     protected void onPostExecute(List<Communication> result) {
-        if (result != null) {
-            listener.updateListView(result);
+        if (type == listener.LIST) {
+            if (result != null) {
+                listener.updateListView(result);
+            }
+            listener.updateListView(null);
+        }
+
+        if (type == listener.INSERT) {
+            listener.insertedCommunication();
         }
     }
 }
