@@ -22,6 +22,7 @@ public class Communication {
     private String device_id_to;
     @Index
     private String device_id_from;
+    @Index
     private Date time_send;
     private boolean is_read;
 
