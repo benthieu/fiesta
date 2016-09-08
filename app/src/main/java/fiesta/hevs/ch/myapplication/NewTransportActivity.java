@@ -21,7 +21,9 @@ import fiesta.hevs.ch.backend.transportApi.model.Transport;
 
 
 /**
- * Created by Pascal on 30.08.2016.
+ * This class is used to create a new transport
+ * @see TransportActivity
+ * @author Pascal on 30.08.2016
  */
 public class NewTransportActivity extends AppCompatActivity implements View.OnClickListener, TransportTimeInterface {
     private DateFormat dateFormat;
@@ -33,6 +35,13 @@ public class NewTransportActivity extends AppCompatActivity implements View.OnCl
     private int minutes = 60;
     private ImageButton backButton;
 
+    /**
+     * We get infos from Transport activity
+     * the festival id  to do the association between the transport and the festival
+     * The date and the name of the festival for the header
+     * @param savedInstanceState
+     * @see TransportActivity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,7 +120,12 @@ public class NewTransportActivity extends AppCompatActivity implements View.OnCl
     }*/
 
 
-    //Click to add a new transport
+        /**
+          * Method use when we clic on the buton to create a new transport
+          * In this we check if all fields is not empty
+          * And we return on the festival Activity
+          * @param v view
+          */
     @Override
     public void onClick(View v) {
         String driverName =  ((EditText) findViewById(R.id.editText_driver_name)).getText().toString();
@@ -151,17 +165,31 @@ public class NewTransportActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+        /**
+          * Method to send the new transport on the database on the cloud
+          * @param transport  the new transport created in this class
+          */
     public void insertTransport(Transport transport){
         String android_id = Settings.Secure.getString(getBaseContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         transport.setDeviceId(android_id);
         new TransportEndpointsAsyncTask(transport).execute();
     }
 
+        /**
+      * Method to display the time picker
+      * @param v
+      */
     public void showTimePickerDialog(View v){
         DialogFragment time = new TimePickerFragment(this);
         time.show(getSupportFragmentManager(), "Time picker");
     }
 
+        /**
+          * Method to get the time selected by the user, on the time picker
+          * We use this hour to set on the new transport and display on the activity
+          * @param hour
+          * @param minutes
+          */
     @Override
     public void setTime(int hour, int minutes) {
         this.hour=hour;
