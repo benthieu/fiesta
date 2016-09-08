@@ -11,6 +11,7 @@ import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.cmd.Query;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -80,30 +81,11 @@ public class CommunicationEndpoint {
         // Objectify ID generator, e.g. long or String, then you should generate the unique ID yourself prior to saving.
         //
         // If your client provides the ID then you should probably use PUT instead.
+        Date now = new Date();
+        communication.setTime_send(now);
         ofy().save().entity(communication).now();
         logger.info("Created Communication with ID: " + communication.getId());
 
-        return ofy().load().entity(communication).now();
-    }
-
-    /**
-     * Updates an existing {@code Communication}.
-     *
-     * @param id            the ID of the entity to be updated
-     * @param communication the desired state of the entity
-     * @return the updated version of the entity
-     * @throws NotFoundException if the {@code id} does not correspond to an existing
-     *                           {@code Communication}
-     */
-    @ApiMethod(
-            name = "update",
-            path = "communication/{id}",
-            httpMethod = ApiMethod.HttpMethod.PUT)
-    public Communication update(@Named("id") Long id, Communication communication) throws NotFoundException {
-        // TODO: You should validate your ID parameter against your resource's ID here.
-        checkExists(id);
-        ofy().save().entity(communication).now();
-        logger.info("Updated Communication: " + communication);
         return ofy().load().entity(communication).now();
     }
 
@@ -133,7 +115,7 @@ public class CommunicationEndpoint {
      */
     @ApiMethod(
             name = "list",
-            path = "communication",
+            path = "communication_list",
             httpMethod = ApiMethod.HttpMethod.GET)
     public CollectionResponse<Communication> list(@Nullable @Named("cursor") String cursor, @Nullable @Named("limit") Integer limit) {
         limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
@@ -145,6 +127,43 @@ public class CommunicationEndpoint {
         List<Communication> communicationList = new ArrayList<Communication>(limit);
         while (queryIterator.hasNext()) {
             communicationList.add(queryIterator.next());
+        }
+        return CollectionResponse.<Communication>builder().setItems(communicationList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
+    }
+
+    /**
+     * List all entities.
+     *
+     * @param cursor used for pagination to determine which page to return
+     * @return a response that encapsulates the result list and the next page token/cursor
+     */
+    @ApiMethod(
+            name = "listByTransport",
+            path = "communication_listByTransport",
+            httpMethod = ApiMethod.HttpMethod.GET)
+    public CollectionResponse<Communication> listByTransport(@Nullable @Named("festival_transport_id") Long festival_transport_id,
+                                                             @Nullable @Named("device_id_1") String device_id_1,
+                                                             @Nullable @Named("device_id_2") String device_id_2,
+                                                             @Nullable @Named("cursor") String cursor) {
+        int limit = DEFAULT_LIST_LIMIT;
+        Query<Communication> query = ofy().load().type(Communication.class);
+        if (festival_transport_id != null) {
+            query.filter("festival_transport_id", festival_transport_id);
+        }
+        if (cursor != null) {
+            query = query.startAt(Cursor.fromWebSafeString(cursor));
+        }
+
+        QueryResultIterator<Communication> queryIterator = query.iterator();
+        List<Communication> communicationList = new ArrayList<Communication>(limit);
+        while (queryIterator.hasNext()) {
+            Communication thiscom = queryIterator.next();
+            if (thiscom.getDevice_id_from() != null && thiscom.getDevice_id_to() != null)  {
+                if ((thiscom.getDevice_id_from().equals(device_id_1) && (thiscom.getDevice_id_to().equals(device_id_2) || device_id_2 == null)) ||
+                        ((thiscom.getDevice_id_from().equals(device_id_2) || device_id_2 == null) && thiscom.getDevice_id_to().equals(device_id_1))) {
+                    communicationList.add(thiscom);
+                }
+            }
         }
         return CollectionResponse.<Communication>builder().setItems(communicationList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
     }
