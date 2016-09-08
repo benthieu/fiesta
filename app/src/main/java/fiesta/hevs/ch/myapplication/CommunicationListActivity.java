@@ -59,7 +59,6 @@ public class CommunicationListActivity extends AppCompatActivity implements Conv
                 Intent myIntent;
 
                 myIntent = new Intent(CommunicationListActivity.this, CommunicationActivity.class);
-
                 myIntent.putExtra("transport_id", transport_id);
                 myIntent.putExtra("device_id_to", other_device_id);
                 myIntent.putExtra("device_id_from", android_id);
@@ -95,7 +94,6 @@ public class CommunicationListActivity extends AppCompatActivity implements Conv
         cLAT.setDevice_id_1(android_id);
         cLAT.setDevice_id_2(other_device_id);
         if (transport_id != 0) {
-            Log.d("transport_id", String.valueOf(transport_id));
             cLAT.setFestival_transport_id(transport_id);
         }
         cLAT.execute();

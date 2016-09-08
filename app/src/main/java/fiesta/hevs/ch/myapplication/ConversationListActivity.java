@@ -128,6 +128,7 @@ public class ConversationListActivity extends AppCompatActivity implements Conve
                 addList.name = c.getName();
                 addList.other_device_id = otherdeviceid;
                 addList.msg_count = 1;
+                addList.last_transport = c.getFestivalTransportId();
                 comList.add(addList);
             }
         }
@@ -158,7 +159,7 @@ public class ConversationListActivity extends AppCompatActivity implements Conve
                                     int position, long id) {
                 // show order edit/modify of this specific order
                 Intent myIntent = new Intent(ConversationListActivity.this, CommunicationListActivity.class);
-                //myIntent.putExtra("transport_id", communications.get(position).getId());
+                myIntent.putExtra("transport_id", comList.get(position).last_transport);
                 myIntent.putExtra("other_device_id", comList.get(position).other_device_id);
 
                 startActivity(myIntent);
@@ -201,5 +202,6 @@ public class ConversationListActivity extends AppCompatActivity implements Conve
         public Date last_date;
         public String name;
         public int msg_count;
+        public Long last_transport;
     }
 }

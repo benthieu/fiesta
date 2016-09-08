@@ -96,7 +96,6 @@ public class InfoTransportActivity extends AppCompatActivity implements Conversa
         destination.setText(myIntent.getStringExtra("transport_destination"));
         festivalName.setText(myIntent.getStringExtra("festival_name"));
         festivalDate.setText(myIntent.getStringExtra("festival_date"));
-
         getConversations();
     }
 
@@ -116,7 +115,10 @@ public class InfoTransportActivity extends AppCompatActivity implements Conversa
     public void getConversations() {
         ConversationListEndPointsAsyncTask cLAT = new ConversationListEndPointsAsyncTask(this);
         cLAT.setType(this.LIST);
+        Log.d("android_id", android_id);
+        Log.d("transport_device_id", transport_device_id);
         cLAT.setDevice_id_1(android_id);
+        cLAT.setDevice_id_2(transport_device_id);
         cLAT.setFestival_transport_id(transport_id);
         cLAT.execute();
     }
@@ -128,7 +130,6 @@ public class InfoTransportActivity extends AppCompatActivity implements Conversa
         if (communications == null) {
             return;
         }
-
         final ListView listView = (ListView) findViewById(R.id.conversation_list);
         setListViewHeightBasedOnChildren(listView);
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_elem_conversation, R.id.textview_message, communications) {
