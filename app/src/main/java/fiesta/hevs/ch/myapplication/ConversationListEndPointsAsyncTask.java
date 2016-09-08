@@ -14,9 +14,6 @@ import java.util.List;
 
 import fiesta.hevs.ch.backend.communicationApi.CommunicationApi;
 import fiesta.hevs.ch.backend.communicationApi.model.Communication;
-import fiesta.hevs.ch.backend.festivalApi.FestivalApi;
-import fiesta.hevs.ch.backend.festivalApi.model.Festival;
-import fiesta.hevs.ch.backend.transportAltApi.model.TransportAlt;
 
 /**
  * Created by Pascal on 02.09.2016.

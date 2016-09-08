@@ -32,5 +32,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/listView"
         android:text="Communication"
+        android:layout_marginTop="20dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        style="@style/ListViewStyle.Light"
+        android:textColor="@color/mainList"
+        android:background="@color/mainListFont"
         android:id="@+id/communicationButton" />
 </RelativeLayout>
