@@ -18,16 +18,34 @@ import fiesta.hevs.ch.backend.transportAltApi.model.TransportAlt;
 /**
  * Created by Chacha on 01.09.2016.
  */
+/**
+ * This class do the link between the activity (Festival) and the backend.
+ * it do the operations in the backgroud
+ * @author  Chacha on 01.09.2016
+ * @see TransportAltActivity
+ */
 public class TransportAltEndPointsAsyncTask extends AsyncTask<Void, Void, List<TransportAlt>> {
     private static TransportAltApi transportAltApi = null;
     private static final String TAG = TransportAltEndPointsAsyncTask.class.getName();
     private TransportAltEndPointsInterface listener;
     private Long festival_id;
+
+    /**
+     * Constructor to get a list of alternative transports with the festival id
+     * @param festival_id
+     * @param listener
+     * @see TransportAltActivity
+     */
     TransportAltEndPointsAsyncTask(Long festival_id, TransportAltEndPointsInterface listener) {
         this.festival_id = festival_id;
         this.listener = listener;
     }
 
+    /**
+     * This method do the link with the backend to access at the database
+     * And return a list of alternatives transports
+     * @see TransportAltApi
+     */
     @Override
     protected List<TransportAlt> doInBackground(Void... params) {
         List<TransportAlt> returnList = new ArrayList<TransportAlt>();
@@ -59,8 +77,13 @@ public class TransportAltEndPointsAsyncTask extends AsyncTask<Void, Void, List<T
         return returnList;
     }
 
-    //This method gets executed on the UI thread - The UI can be manipulated directly inside
-    //of this method
+    /**
+     * This method gets executed on the UI thread - The UI can be manipulated directly inside
+     * of this method
+     * We use the Interface to send the list of alternatives transports to the activity
+     * @see TransportAltEndPointsInterface
+     * @see TransportAltActivity
+     */
     @Override
     protected void onPostExecute(List<TransportAlt> result) {
         if (result != null) {

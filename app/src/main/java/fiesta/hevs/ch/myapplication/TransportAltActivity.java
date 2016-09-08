@@ -114,17 +114,15 @@ public class TransportAltActivity extends AppCompatActivity implements Transport
 
         final Context context = this;
     }
-
     final Context context = this;
 
     /**** Method for Setting the Height of the ListView dynamically.
-     **** Hack to fix the issue of not showing all the items of the ListView
-     **** when placed inside a ScrollView  ****/
+       **** Hack to fix the issue of not showing all the items of the ListView
+        **** when placed inside a ScrollView  ****/
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null)
             return;
-
         int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
         int totalHeight = 0;
         View view = null;
@@ -139,6 +137,6 @@ public class TransportAltActivity extends AppCompatActivity implements Transport
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
-    }
+           }
 
 }

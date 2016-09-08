@@ -60,6 +60,11 @@ public class TransportEndpointsAsyncTask extends AsyncTask<Void, Void, List<Tran
         this.updateTransport = updateTransport;
     }
 
+    /**
+     * This method do the link with the backend to access at the database
+     * And return a list of transports
+     * @see TransportApi
+     */
     @Override
     protected List<Transport> doInBackground(Void... params) {
         List<Transport> returnList = new ArrayList<Transport>();
@@ -84,11 +89,11 @@ public class TransportEndpointsAsyncTask extends AsyncTask<Void, Void, List<Tran
 
         try {
             if(addTransport !=null){//To register a new transport
-                if(updateTransport!=false){
+                if(updateTransport!=false){ //To update a transport
                     transportApi.update(addTransport.getId(),addTransport).execute();
                     return null;
                 }
-                else {
+                else { //Register a new transport
                     transportApi.insert(addTransport).execute();
                     return null;
                 }
