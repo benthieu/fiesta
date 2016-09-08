@@ -26,6 +26,11 @@ import java.util.List;
 
 import fiesta.hevs.ch.backend.transportApi.model.Transport;
 
+/**
+ * Class to display a list of transpots for one festival
+ * Possibility to create a transport or see
+ * some alternatives transport
+ */
 public class TransportActivity extends AppCompatActivity implements TransportEndpointsInterface {
     private ProgressDialog mDialog;
     private Long festival_id;
@@ -62,6 +67,11 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
         }
     };
 
+    /**
+     * Get info (id) of the festival
+     * Create the layout
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,10 +126,20 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
         mDialog.dismiss();
     }
 
+    /**
+     * Method to send the query on to database to get a list of transport
+     * @see TransportAltEndPointsAsyncTask
+     */
     public void getTransports() {
         new TransportEndpointsAsyncTask(festival_id, this).execute();
     }
 
+    /**
+     * Method who get the list of transport
+     * @param transports
+     * @see TransportEndpointsInterface
+     * @see TransportEndpointsAsyncTask
+     */
     @Override
     public void updateListView(final List<Transport> transports) {
         mDialog.hide();
@@ -191,6 +211,12 @@ public class TransportActivity extends AppCompatActivity implements TransportEnd
         final Context context = this;
     }
 
+    /**
+     * Get information for the messages on the activity
+     * @param transports
+     * @see TransportEndpointsInterface
+     * @see TransportEndpointsAsyncTask
+     */
     @Override
     public void updateIntro(List<Transport> transports) {
         int nbTransports = transports.size();

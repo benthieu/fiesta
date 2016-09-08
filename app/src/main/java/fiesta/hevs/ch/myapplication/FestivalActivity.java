@@ -30,6 +30,9 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Date;
 
+/**
+ * Class who display the list of festivals
+ */
 public class FestivalActivity extends AppCompatActivity implements FestivalEndpointsInterface {
     private DateFormat dateFormat;
     private DateFormat dateFormatInput;
@@ -43,6 +46,11 @@ public class FestivalActivity extends AppCompatActivity implements FestivalEndpo
             startActivity(intentForCommunication);
         }
     };
+
+    /**
+     * Create the festival view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,10 +81,18 @@ public class FestivalActivity extends AppCompatActivity implements FestivalEndpo
     }
 
 
+    /**
+     * Method to send the query on to database to get a list of festival
+     * @see FestivalEndpointsAsyncTask
+     */
     public void getFestivals() {
         new FestivalEndpointsAsyncTask(this).execute();
     }
 
+    /**
+     * Get list of festivals and put these in a listview
+     * @param festivals
+     */
     @Override
     public void updateListView(final List<Festival> festivals) {
         mDialog.hide();

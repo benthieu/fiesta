@@ -22,6 +22,12 @@ import fiesta.hevs.ch.backend.transportAltApi.model.TransportAlt;
 /**
  * Created by Chacha on 01.09.2016.
  */
+
+/**
+ * Class for the list of alternative transport
+ * @author Chacha on 01.09.2016.
+ *
+ */
 public class TransportAltActivity extends AppCompatActivity implements TransportAltEndPointsInterface {
     private ProgressDialog mDialog;
     private Long festival_id;
@@ -29,6 +35,10 @@ public class TransportAltActivity extends AppCompatActivity implements Transport
     private TextView transport_top_name;
     private TextView transport_top_date;
 
+    /**
+     * Get info about the festival (id)
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,11 +84,20 @@ public class TransportAltActivity extends AppCompatActivity implements Transport
         mDialog.dismiss();
     }
 
+    /**
+     * Method to send the query on to database to get a list of alternative transport
+     * @see TransportAltEndPointsAsyncTask
+     */
     public void getTransportsAlt() {
         new TransportAltEndPointsAsyncTask(festival_id, this).execute();
     }
 
-    //Get the list of alternative transports
+    /**
+     * Get the list of alternative transports
+     * @param transportsAlt
+     * @see TransportAltEndPointsAsyncTask
+     * @see TransportAltEndPointsInterface
+     */
     @Override
     public void updateListView(final List<TransportAlt> transportsAlt) {
         mDialog.hide();
