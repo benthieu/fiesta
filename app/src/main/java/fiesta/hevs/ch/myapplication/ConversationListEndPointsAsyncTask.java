@@ -100,7 +100,7 @@ public class ConversationListEndPointsAsyncTask extends AsyncTask<Void, Void, Li
         if (type == listener.LIST) {
             try {
                 // and for instance return the list of all employees
-                return returnList = communicationApi.listByTransport().setFestivalTransportId(festival_transport_id).setDeviceId1(device_id_1).execute().getItems();
+                return returnList = communicationApi.listByTransport().setFestivalTransportId(festival_transport_id).setDeviceId1(device_id_1).setDeviceId2(device_id_2).execute().getItems();
 
             } catch (IOException e) {
                 Log.e(TAG, e.toString());

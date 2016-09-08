@@ -81,7 +81,6 @@ public class CommunicationActivity extends AppCompatActivity implements Conversa
 
     @Override
     public void insertedCommunication() {
-        mDialog.hide();
         finish();
     }
 }

@@ -98,6 +98,9 @@ public class ConversationListActivity extends AppCompatActivity implements Conve
             boolean is_in_list = false;
             for (comObj o : comList) {
                 if (o.other_device_id.equals(otherdeviceid)) {
+                    if (!c.getDeviceIdFrom().equals(android_id)) {
+                        o.name = c.getName();
+                    }
                     is_in_list = true;
                     Date formatDate = null;
                     try {
@@ -124,6 +127,7 @@ public class ConversationListActivity extends AppCompatActivity implements Conve
                 addList.last_date = formatDate;
                 addList.name = c.getName();
                 addList.other_device_id = otherdeviceid;
+                addList.msg_count = 1;
                 comList.add(addList);
             }
         }

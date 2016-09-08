@@ -95,6 +95,7 @@ public class CommunicationListActivity extends AppCompatActivity implements Conv
         cLAT.setDevice_id_1(android_id);
         cLAT.setDevice_id_2(other_device_id);
         if (transport_id != 0) {
+            Log.d("transport_id", String.valueOf(transport_id));
             cLAT.setFestival_transport_id(transport_id);
         }
         cLAT.execute();
@@ -121,6 +122,10 @@ public class CommunicationListActivity extends AppCompatActivity implements Conv
                 if (communications.get(position).getDeviceIdFrom().equals(android_id)) {
                     message_parent.setGravity(Gravity.RIGHT);
                     message_layout.setGravity(Gravity.RIGHT);
+                }
+                else {
+                    message_parent.setGravity(Gravity.LEFT);
+                    message_layout.setGravity(Gravity.LEFT);
                 }
 
                 text_message.setText(communications.get(position).getMessage());
