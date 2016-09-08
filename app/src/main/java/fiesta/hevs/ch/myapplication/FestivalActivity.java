@@ -18,7 +18,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import fiesta.hevs.ch.backend.festivalApi.model.Festival;
 
@@ -80,6 +82,7 @@ public class FestivalActivity extends AppCompatActivity implements FestivalEndpo
         mDialog.hide();
 
         final ListView listView = (ListView) findViewById(R.id.listView);
+        setListViewHeightBasedOnChildren(listView);
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_elem_festival, R.id.textview_1, festivals) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -93,17 +96,16 @@ public class FestivalActivity extends AppCompatActivity implements FestivalEndpo
                     String CurrentString = festivals.get(position).getImage();
                     String[] separated = CurrentString.split(",");
                     byte[] decodedString = Base64.decode(separated[1], Base64.DEFAULT);
-                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0,decodedString.length);
+                    Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                     image1.setImageBitmap(decodedByte);
-                }
-                else {
+                } else {
                     image1.setImageBitmap(null);
                 }
 
                 if (position == 0) {
                     image1.setBackground(ContextCompat.getDrawable(this.getContext(), R.layout.rounded_corners_top_left));
                 }
-                if (position == (festivals.size()-1)) {
+                if (position == (festivals.size() - 1)) {
                     image1.setBackground(ContextCompat.getDrawable(this.getContext(), R.layout.rounded_corners_bottom_left));
                 }
 
@@ -114,8 +116,7 @@ public class FestivalActivity extends AppCompatActivity implements FestivalEndpo
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                if (formatDate != null)
-                {
+                if (formatDate != null) {
                     text2.setText(dateFormat.format(formatDate));
                 }
                 return view;
@@ -138,8 +139,7 @@ public class FestivalActivity extends AppCompatActivity implements FestivalEndpo
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                if (formatDate != null)
-                {
+                if (formatDate != null) {
                     myIntent.putExtra("festival_date", dateFormat.format(formatDate));
                 }
 
@@ -147,10 +147,35 @@ public class FestivalActivity extends AppCompatActivity implements FestivalEndpo
             }
         });
 
-        final Button button= (Button) findViewById(R.id.communicationButton);;
+        final Button button = (Button) findViewById(R.id.communicationButton);
+        ;
 
         button.setOnClickListener(clickCommunication);
 
         final Context context = this;
     }
+        /**** Method for Setting the Height of the ListView dynamically.
+         **** Hack to fix the issue of not showing all the items of the ListView
+         **** when placed inside a ScrollView  ****/
+        public static void setListViewHeightBasedOnChildren(ListView listView) {
+            ListAdapter listAdapter = listView.getAdapter();
+            if (listAdapter == null)
+                return;
+
+            int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+            int totalHeight = 0;
+            View view = null;
+            for (int i = 0; i < listAdapter.getCount(); i++) {
+                view = listAdapter.getView(i, view, listView);
+                if (i == 0)
+                    view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, RelativeLayout.LayoutParams.WRAP_CONTENT));
+
+                view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+                totalHeight += view.getMeasuredHeight();
+            }
+            ViewGroup.LayoutParams params = listView.getLayoutParams();
+            params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+            listView.setLayoutParams(params);
+        }
+
 }
