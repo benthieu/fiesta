@@ -37,7 +37,10 @@
         <activity
             android:name=".UpdateTransportActivity"
             android:theme="@style/Theme.AppCompat" />
-        <activity android:name=".CommunicationActivity"
+        <activity
+            android:name=".CommunicationActivity"
+            android:theme="@style/Theme.AppCompat" />
+        <activity android:name=".CommunicationListActivity"
             android:theme="@style/Theme.AppCompat"></activity>
     </application>
 
