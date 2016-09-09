@@ -52,7 +52,7 @@
         android:id="@+id/send_communication"
         android:layout_below="@id/communication_message"
         style="@style/ListViewStyle.Light"
-        android:text="Send"
+        android:text="Envoyer"
         android:textColor="@color/mainBackground"
         android:layout_marginRight="0dp"
         android:layout_marginTop="20dp"

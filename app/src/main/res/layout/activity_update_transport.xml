@@ -155,7 +155,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:id="@+id/update_transport"
-        android:text="Update"
+        android:text="Modifier"
         android:textColor="@color/mainList"
         android:background="@color/mainListFont"
         android:textSize="14dp"
