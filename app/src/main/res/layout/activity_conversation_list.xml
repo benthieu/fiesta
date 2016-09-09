@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/titleView"
-        android:text="Liste de vos conversations"
+        android:text="Liste de tes conversations"
         android:layout_below="@+id/backButton"
         android:layout_marginTop="15dp"
         android:paddingBottom="15dp"

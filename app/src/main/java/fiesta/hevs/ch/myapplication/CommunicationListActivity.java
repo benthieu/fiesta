@@ -94,6 +94,7 @@ public class CommunicationListActivity extends AppCompatActivity implements Conv
         super.onResume();
         mDialog.show();
         getConversations();
+
     }
 
     @Override

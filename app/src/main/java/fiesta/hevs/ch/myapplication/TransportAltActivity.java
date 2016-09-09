@@ -103,7 +103,7 @@ public class TransportAltActivity extends AppCompatActivity implements Transport
         mDialog.hide();
 
         final ListView listView = (ListView) findViewById(R.id.listView);
-        setListViewHeightBasedOnChildren(listView);
+
 
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list_elem_transport_alt, R.id.textview_1, transportsAlt) {
             @Override
@@ -121,14 +121,15 @@ public class TransportAltActivity extends AppCompatActivity implements Transport
             }
         };
 
-        listView.setAdapter(adapter);
-
+       listView.setAdapter(adapter);
+       // setListViewHeightBasedOnChildren(listView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
             }
+
         });
 
         final Context context = this;
@@ -140,8 +141,6 @@ public class TransportAltActivity extends AppCompatActivity implements Transport
         **** when placed inside a ScrollView  ****/
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null)
-            return;
         int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
         int totalHeight = 0;
         View view = null;
@@ -154,7 +153,7 @@ public class TransportAltActivity extends AppCompatActivity implements Transport
             totalHeight += view.getMeasuredHeight();
         }
         ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() -1));
         listView.setLayoutParams(params);
            }
 
