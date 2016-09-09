@@ -5,7 +5,11 @@ import java.util.List;
 import fiesta.hevs.ch.backend.communicationApi.model.Communication;
 
 /**
- * Created by Pascal on 02.09.2016.
+ * Interface to "communicate" between CommunicationEndpointsAsyncTask and other communication Activity
+ * @author Pascal on 02.09.2016.
+ * @see ConversationListEndPointsAsyncTask
+ * @see ConversationListActivity
+ * @see CommunicationListActivity
  */
 public interface ConversationListEndPointsInterface {
     public static int LIST = 0;

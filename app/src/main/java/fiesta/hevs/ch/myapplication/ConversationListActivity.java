@@ -30,7 +30,8 @@ import fiesta.hevs.ch.backend.communicationApi.model.Communication;
 import fiesta.hevs.ch.backend.festivalApi.model.Festival;
 
 /**
- * Created by Pascal on 01.09.2016.
+ * This class display all current conversation for one user
+ * @author Pascal on 01.09.2016.
  */
 public class ConversationListActivity extends AppCompatActivity implements ConversationListEndPointsInterface{
     private ProgressDialog mDialog;
@@ -41,6 +42,9 @@ public class ConversationListActivity extends AppCompatActivity implements Conve
     private DateFormat dateFormatInput;
     private final List<comObj> comList = new ArrayList<comObj>();
 
+    /**
+     * Method to create the layout an get the id of device
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +88,10 @@ public class ConversationListActivity extends AppCompatActivity implements Conve
         mDialog.dismiss();
     }
 
+    /**
+     * Send a query to the AsyncTask to get conversation for one device id
+     * @see ConversationListActivity
+     */
     public void getConversations() {
         ConversationListEndPointsAsyncTask cLAT = new ConversationListEndPointsAsyncTask(this);
         cLAT.setType(this.LIST);
@@ -92,6 +100,12 @@ public class ConversationListActivity extends AppCompatActivity implements Conve
     }
 
 
+    /**
+     * Get a list of conversation from the cloud
+     * @param communications - list of conversation
+     * @see ConversationListEndPointsInterface
+     * @see ConversationListEndPointsAsyncTask
+     */
     public void updateListView(final List<Communication> communications) {
         mDialog.hide();
         if (communications == null || communications.size() == 0) {
@@ -205,6 +219,9 @@ public class ConversationListActivity extends AppCompatActivity implements Conve
         listView.setLayoutParams(params);
     }
 
+    /**
+     * This class is used to create a communication object
+     */
     private class comObj {
         public String other_device_id;
         public Date last_date;

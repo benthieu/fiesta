@@ -15,6 +15,9 @@ import java.util.List;
 
 import fiesta.hevs.ch.backend.communicationApi.model.Communication;
 
+/**
+ * This class is used to write and send a new message in the conversation
+ */
 public class CommunicationActivity extends AppCompatActivity implements ConversationListEndPointsInterface {
     private ProgressDialog mDialog;
     private EditText communication_name;
@@ -25,6 +28,10 @@ public class CommunicationActivity extends AppCompatActivity implements Conversa
     private Long festival_transport_id;
     private ImageButton backButton;
 
+    /**
+     * Method to create the layout an get the device id of passenger and the driver
+     * @see CommunicationListActivity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -29,9 +29,8 @@ import fiesta.hevs.ch.backend.communicationApi.model.Communication;
 import fiesta.hevs.ch.backend.transportApi.model.Transport;
 
 /**
- * This class display some informations for a selected transport.
- * @see TransportActivity
- * @author Sylvain
+ * This class display the communication between a driver and passenger
+ * @author Mathi
  */
 public class CommunicationListActivity extends AppCompatActivity implements ConversationListEndPointsInterface {
     private ProgressDialog mDialog;
@@ -40,6 +39,12 @@ public class CommunicationListActivity extends AppCompatActivity implements Conv
     private String android_id;
     private String other_device_id;
     private ImageButton backButton;
+
+    /**
+     * Get the device id from passenger and form driver
+     * Create the layout
+     * @see ConversationListActivity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +102,10 @@ public class CommunicationListActivity extends AppCompatActivity implements Conv
         mDialog.dismiss();
     }
 
+    /**
+     * Method to get the communication from the database with AsycTask
+     * @see ConversationListEndPointsAsyncTask
+     */
     public void getConversations() {
         ConversationListEndPointsAsyncTask cLAT = new ConversationListEndPointsAsyncTask(this);
         cLAT.setType(this.LIST);
@@ -108,6 +117,11 @@ public class CommunicationListActivity extends AppCompatActivity implements Conv
         cLAT.execute();
     }
 
+    /**
+     * Get the list of communication and put it in the listview to display
+     * @see ConversationListEndPointsAsyncTask
+     * @see ConversationListEndPointsInterface
+     */
     @Override
     public void updateListView(final List<Communication> communications) {
         mDialog.hide();

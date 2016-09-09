@@ -16,7 +16,9 @@ import fiesta.hevs.ch.backend.communicationApi.CommunicationApi;
 import fiesta.hevs.ch.backend.communicationApi.model.Communication;
 
 /**
- * Created by Pascal on 02.09.2016.
+ * This class do the link between the activity (Conversation and communication) and the backend.
+ * it does the operations in the backgroud
+ * @author Pascal on 02.09.2016.
  */
 public class ConversationListEndPointsAsyncTask extends AsyncTask<Void, Void, List<Communication>> {
     private static CommunicationApi communicationApi = null;
@@ -75,6 +77,9 @@ public class ConversationListEndPointsAsyncTask extends AsyncTask<Void, Void, Li
         this.listener = listener;
     }
 
+    /**
+     * This use to send a query to the backend to insert and get a list of message
+     */
     @Override
     protected List<Communication> doInBackground(Void... params) {
         List<Communication> returnList = new ArrayList<Communication>();
@@ -119,8 +124,12 @@ public class ConversationListEndPointsAsyncTask extends AsyncTask<Void, Void, Li
         return null;
     }
 
-    //This method gets executed on the UI thread - The UI can be manipulated directly inside
-    //of this method
+
+    /**
+     * This method gets executed on the UI thread - The UI can be manipulated directly inside
+     *  of this method
+     *  @see ConversationListEndPointsInterface
+     */
     @Override
     protected void onPostExecute(List<Communication> result) {
         if (type == listener.LIST) {
