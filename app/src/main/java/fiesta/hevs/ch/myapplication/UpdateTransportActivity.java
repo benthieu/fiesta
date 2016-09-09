@@ -163,6 +163,7 @@ public class UpdateTransportActivity extends AppCompatActivity implements Transp
         transport.setNumFreeSpace(this.numPlace);
         transport.setHourStart(hour);
         transport.setMinuteStart(minutes);
+        transport.setDeviceId(this.android_id);
         updateTransport();
 
         Intent endUpdate = new Intent(this, FestivalActivity.class);
